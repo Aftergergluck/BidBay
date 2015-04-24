@@ -36,3 +36,6 @@ Les étapes du développement devront être plus amplement détaillées. Pour le
 * Création de la base de données SQL
 * Création d'un template HTML et du code CSS associé
 * Partie plus nébuleuse autour du PHP (quantité de travail à évaluer)
+
+### Autres
+Petit guide (français) pour utiliser Git sous Windows : http://rogerdudler.github.io/git-guide/index.fr.html
