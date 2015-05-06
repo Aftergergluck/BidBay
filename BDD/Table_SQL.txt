@@ -1,0 +1,95 @@
+#------------------------------------------------------------
+#        Script MySQL.
+#------------------------------------------------------------
+
+
+#------------------------------------------------------------
+# Table Utilisateur
+#------------------------------------------------------------
+
+CREATE TABLE Utilisateur(
+        mailUtilisateur   Varchar (32) NOT NULL ,
+        mdp               Varchar (32) NOT NULL ,
+        nom               Varchar (32) NOT NULL ,
+        prenom            Varchar (32) NOT NULL ,
+        typeUser          Varchar (32) NOT NULL ,
+        imageUser         Varchar (32) NOT NULL ,
+        adresseUser       Varchar (32) NOT NULL ,
+        telephone         Int NOT NULL ,
+        dateNaissanceUser Date NOT NULL ,
+        PRIMARY KEY (mailUtilisateur )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table Objet
+#------------------------------------------------------------
+
+CREATE TABLE Objet(
+        IdObjet           Int NOT NULL ,
+        prix              Float NOT NULL ,
+        nomObj            Varchar (32) NOT NULL ,
+        decriptionObj     Varchar (32) NOT NULL ,
+        ImageObj          Varchar (32) NOT NULL ,
+        pasObjet          Float NOT NULL ,
+        quantiteObj       Int ,
+        dateDebutVente    Date ,
+        dateLimiteVente   Date ,
+        idCategorie       Int ,
+        DateVente         Date ,
+        MontantVente      Float ,
+        mailUtilisateur   Varchar (32) NOT NULL ,
+        DateAchatObj      Date ,
+        MontantAchatObj   Float ,
+        mailUtilisateur_1 Varchar (32) NOT NULL ,
+        PRIMARY KEY (IdObjet )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table Categorie
+#------------------------------------------------------------
+
+CREATE TABLE Categorie(
+        idCategorie   Int NOT NULL ,
+        typeCategorie Varchar (32) ,
+        PRIMARY KEY (idCategorie )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table encherir
+#------------------------------------------------------------
+
+CREATE TABLE encherir(
+        dateEnchere     Date ,
+        SommeUser       Int ,
+        mailUtilisateur Varchar (32) NOT NULL ,
+        IdObjet         Int NOT NULL ,
+        PRIMARY KEY (mailUtilisateur ,IdObjet )
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table note
+#------------------------------------------------------------
+
+CREATE TABLE note(
+        noteFiabilite     Float NOT NULL ,
+        noteComm          Float NOT NULL ,
+        noteDelai         Float NOT NULL ,
+        dateNoteUser      Date NOT NULL ,
+        mailUtilisateur   Varchar (32) NOT NULL ,
+        mailUtilisateur_1 Varchar (32) NOT NULL ,
+        IdObjet           Int NOT NULL ,
+        PRIMARY KEY (mailUtilisateur ,mailUtilisateur_1 ,IdObjet )
+)ENGINE=InnoDB;
+
+ALTER TABLE Objet ADD CONSTRAINT FK_Objet_idCategorie FOREIGN KEY (idCategorie) REFERENCES Categorie(idCategorie);
+ALTER TABLE Objet ADD CONSTRAINT FK_Objet_mailUtilisateur FOREIGN KEY (mailUtilisateur) REFERENCES Utilisateur(mailUtilisateur);
+ALTER TABLE Objet ADD CONSTRAINT FK_Objet_mailUtilisateur_1 FOREIGN KEY (mailUtilisateur_1) REFERENCES Utilisateur(mailUtilisateur);
+ALTER TABLE encherir ADD CONSTRAINT FK_encherir_mailUtilisateur FOREIGN KEY (mailUtilisateur) REFERENCES Utilisateur(mailUtilisateur);
+ALTER TABLE encherir ADD CONSTRAINT FK_encherir_IdObjet FOREIGN KEY (IdObjet) REFERENCES Objet(IdObjet);
+ALTER TABLE note ADD CONSTRAINT FK_note_mailUtilisateur FOREIGN KEY (mailUtilisateur) REFERENCES Utilisateur(mailUtilisateur);
+ALTER TABLE note ADD CONSTRAINT FK_note_mailUtilisateur_1 FOREIGN KEY (mailUtilisateur_1) REFERENCES Utilisateur(mailUtilisateur);
+ALTER TABLE note ADD CONSTRAINT FK_note_IdObjet FOREIGN KEY (IdObjet) REFERENCES Objet(IdObjet);
