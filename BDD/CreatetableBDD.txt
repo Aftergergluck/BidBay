@@ -1,0 +1,175 @@
+------------------------------------------------------------
+--        Script Postgre 
+------------------------------------------------------------
+
+
+
+------------------------------------------------------------
+-- Table: Utilisateur
+------------------------------------------------------------
+CREATE TABLE  Utilisateur(
+	mail          VARCHAR (32) NOT NULL ,
+	mdp           VARCHAR (32) NOT NULL ,
+	nom           VARCHAR (32) NOT NULL ,
+	prenom        VARCHAR (32) NOT NULL ,
+	typeUser      VARCHAR (32) NOT NULL ,
+	imageUser     VARCHAR (32) NOT NULL ,
+	adresseUser   VARCHAR (32) NOT NULL ,
+	telephone     INT  NOT NULL ,
+	dateNaissance DATE  NOT NULL ,
+	noteGlobale   FLOAT  NOT NULL ,
+	noteComm      FLOAT   ,
+	noteDelai     FLOAT   ,
+	noteFiabilite FLOAT   ,
+	idHistoAchat  INT   ,
+	IdHistoVente  INT   ,
+	CONSTRAINT prk_constraint_Utilisateur PRIMARY KEY (mail)
+)WITHOUT OIDS;
+
+
+------------------------------------------------------------
+-- Table: Objet
+------------------------------------------------------------
+CREATE TABLE  Objet(
+	IdObjet                        INT  NOT NULL ,
+	prix                           INT  NOT NULL ,
+	nomObj                         VARCHAR (32) NOT NULL ,
+	decriptionObj                  VARCHAR (32) NOT NULL ,
+	ImageObj                       VARCHAR (32) NOT NULL ,
+	pasObjet                       FLOAT  NOT NULL ,
+	quantiteObj                    INT   ,
+	dateDebutVente                 DATE   ,
+	idCategorie                    INT   ,
+	mail                           VARCHAR (32) NOT NULL ,
+	IdObjet_historiqueEnchereObjet INT  NOT NULL ,
+	dateEnchere                    DATE   ,
+	CONSTRAINT prk_constraint_Objet PRIMARY KEY (IdObjet)
+)WITHOUT OIDS;
+
+
+------------------------------------------------------------
+-- Table: historiqueAchat
+------------------------------------------------------------
+CREATE TABLE  historiqueAchat(
+	idHistoAchat     SERIAL NOT NULL ,
+	payer            BOOL   ,
+	noterVendeur     BOOL   ,
+	prixFinal        INT   ,
+	dateAquisition   DATE   ,
+	mail             VARCHAR (32) NOT NULL ,
+	mail_Utilisateur VARCHAR (32) NOT NULL ,
+	CONSTRAINT prk_constraint_historiqueAchat PRIMARY KEY (idHistoAchat)
+)WITHOUT OIDS;
+
+
+------------------------------------------------------------
+-- Table: historiqueVente
+------------------------------------------------------------
+CREATE TABLE  historiqueVente(
+	IdHistoVente     SERIAL NOT NULL ,
+	IdObjet          INT  NOT NULL ,
+	datefin          DATE   ,
+	montant          INT   ,
+	mail             VARCHAR (32) NOT NULL ,
+	mail_Utilisateur VARCHAR (32) NOT NULL ,
+	CONSTRAINT prk_constraint_historiqueVente PRIMARY KEY (IdHistoVente)
+)WITHOUT OIDS;
+
+
+------------------------------------------------------------
+-- Table: Categorie
+------------------------------------------------------------
+
+CREATE TABLE Categorie(
+	idCategorie   INT  NOT NULL ,
+	typeCategorie VARCHAR (32)  ,
+	CONSTRAINT prk_constraint_Categorie PRIMARY KEY (idCategorie)
+);
+
+
+------------------------------------------------------------
+-- Table: historiqueEnchereObjet
+------------------------------------------------------------
+CREATE TABLE historiqueEnchereObjet(
+	mail        VARCHAR (32) NOT NULL ,
+	IdObjet     INT  NOT NULL ,
+	dateEnchere DATE  NOT NULL ,
+	montant     INT   ,
+	IdObjet_1   INT  NOT NULL ,
+	CONSTRAINT prk_constraint_historiqueEnchereObjet PRIMARY KEY (mail,IdObjet,dateEnchere)
+);
+
+
+------------------------------------------------------------
+-- Table: encherir
+------------------------------------------------------------
+CREATE TABLE encherir(
+	dateFin DATE  ,
+	mail    VARCHAR (32) NOT NULL ,
+	IdObjet INT  NOT NULL ,
+	CONSTRAINT prk_constraint_encherir PRIMARY KEY (mail,IdObjet)
+);
+
+
+------------------------------------------------------------
+-- Table: noter
+------------------------------------------------------------
+CREATE TABLE noter(
+	mail             VARCHAR (32) NOT NULL ,
+	mail_Utilisateur VARCHAR (32) NOT NULL ,
+	CONSTRAINT prk_constraint_noter PRIMARY KEY (mail,mail_Utilisateur)
+);
+
+
+
+ALTER TABLE  Utilisateur 
+	ADD CONSTRAINT FK_Utilisateur_idHistoAchat 
+	FOREIGN KEY (idHistoAchat) REFERENCES  historiqueAchat(idHistoAchat);
+
+ALTER TABLE  Utilisateur 
+	ADD CONSTRAINT FK_Utilisateur_IdHistoVente 
+	FOREIGN KEY (IdHistoVente) REFERENCES  historiqueVente(IdHistoVente);
+	
+ALTER TABLE  Objet 
+	ADD CONSTRAINT FK_Objet_idCategorie 
+	FOREIGN KEY (idCategorie) REFERENCES  Categorie(idCategorie);
+	
+ALTER TABLE  Objet 
+	ADD CONSTRAINT FK_Objet_mail 
+	FOREIGN KEY (mail) REFERENCES  historiqueEnchereObjet(mail);
+	
+ALTER TABLE  Objet 
+	ADD CONSTRAINT FK_Objet_IdObjet_historiqueEnchereObjet 
+	FOREIGN KEY (IdObjet_historiqueEnchereObjet) REFERENCES  historiqueEnchereObjet(IdObjet);
+	
+ALTER TABLE  Objet 
+	ADD CONSTRAINT FK_Objet_dateEnchere 
+	FOREIGN KEY (dateEnchere) REFERENCES  historiqueEnchereObjet(dateEnchere);
+	
+ALTER TABLE  historiqueAchat
+	ADD CONSTRAINT FK_historiqueAchat_mail_Utilisateur 
+	FOREIGN KEY (mail_Utilisateur) REFERENCES  Utilisateur(mail);
+	
+ALTER TABLE  historiqueVente
+	ADD CONSTRAINT FK_historiqueVente_mail_Utilisateur 
+	FOREIGN KEY (mail_Utilisateur) REFERENCES  Utilisateur(mail);
+	
+ALTER TABLE  historiqueEnchereObjet
+	ADD CONSTRAINT FK_historiqueEnchereObjet_IdObjet_1 
+	FOREIGN KEY (IdObjet_1) REFERENCES  Objet(IdObjet);
+	
+ALTER TABLE  encherir 
+	ADD CONSTRAINT FK_encherir_mail 
+	FOREIGN KEY (mail) REFERENCES  Utilisateur(mail)
+	
+ALTER TABLE  encherir 
+	ADD CONSTRAINT FK_encherir_IdObjet 
+	FOREIGN KEY (IdObjet) REFERENCES  Objet(IdObjet);
+	
+ALTER TABLE  noter 
+	ADD CONSTRAINT FK_noter_mail 
+	FOREIGN KEY (mail) REFERENCES  Utilisateur(mail);
+	
+ALTER TABLE  noter 
+	ADD CONSTRAINT FK_noter_mail_Utilisateur 
+	FOREIGN KEY (mail_Utilisateur) REFERENCES  Utilisateur(mail);
