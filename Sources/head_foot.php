@@ -8,7 +8,7 @@
 		echo "<head>";
 		echo "<link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"images/favicon.png\" />";
 		echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />";
-		echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"template.css\">";
+		echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"styles/template.css\">";
 		echo "<title>BidBay</title>";
 		echo "<div class=\"entete\"><img class=\"logo\" src=\"images/logo.png\" alt=\"logo du site web\"/>";
 		if(isset($_SESSION) && (!isset($_SESSION['login']) || ($_SESSION['login']=="Deco") || ($_SESSION['login']=="erreur") || ($_SESSION['login']=="manque"))) //Déconnecté
