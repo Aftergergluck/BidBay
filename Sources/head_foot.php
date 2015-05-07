@@ -10,7 +10,7 @@
 		echo "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />";
 		echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"styles/template.css\">";
 		echo "<title>BidBay</title>";
-		echo "<div class=\"entete\"><img class=\"logo\" src=\"images/logo.png\" alt=\"logo du site web\"/>";
+		echo "<div class=\"entete\"><a href=\"accueil.php\"><img class=\"logo\" src=\"images/logo.png\" alt=\"logo du site web\"/></a>";
 		if(isset($_SESSION) && (!isset($_SESSION['login']) || ($_SESSION['login']=="Deco") || ($_SESSION['login']=="erreur") || ($_SESSION['login']=="manque"))) //Déconnecté
 		{
 			echo "<a class=\"bouton_inscr\" href=\"inscription.php\">Inscription</a>";
@@ -21,7 +21,7 @@
 			echo "<a class=\"deco\" href=\"deconnexion.php\">Déconnexion</a>";
 			echo "<p class=\"mail\">test-stri@projet_web.com</p>";
 		}
-		echo "<p class=\"rech\"><a class=\"bouton_rech\" href=\"index2.html\"><img class=\"img_rech\" src=\"images/trouver-recherche.png\" alt=\"rech\"></a>Recherche : <input type=\"text\" name=\"recherche\" placeholder=\"Votre recherche...\"></p></div>";
+		echo "<p class=\"rech\"><a class=\"bouton_rech\" href=\"accueil.php\"><img class=\"img_rech\" src=\"images/trouver-recherche.png\" alt=\"rech\"></a>Recherche : <input type=\"text\" name=\"recherche\" placeholder=\"Votre recherche...\"></p></div>";
 		echo "<nav style=\"text-align:center\">";
 		echo "<a href=\"accueil.php\">Accueil</a>";
 		echo "<a href=\"categories.php\">Catégories</a>";

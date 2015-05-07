@@ -138,7 +138,7 @@ img.logo
 		display:block;
 	}
 .note{
-	background:url(../images/etoile.png) no-repeat 8px 2px;
+	background:url(images/etoile.png) no-repeat 8px 2px;
 	background-size:30px 30px;
 	text-indent:30px;
 	display:block;
@@ -168,7 +168,7 @@ nav a
 nav a:hover 
 {
 	color: #0099cc;
-	background:url('../images/favicon.png') no-repeat;	/* permet d'afficher le logo */
+	background:url('images/favicon.png') no-repeat;	/* permet d'afficher le logo */
 	border: 0;
 	background-size: 100%;						/* sur chaques lien du menu */
 	background-size: 33px 30px;
