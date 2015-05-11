@@ -5,25 +5,24 @@
 
 <h1 class="Tpage">Connexion</h1>
 		
-	<h2 class="Tdesc">Titre de texte descriptif</h2>
-	<h3 class="Tobj">Nom Objet</h3>
 		
-	<p>Tout type de texte : </p>
-	<ul>
-		<li style="list-style-type:none">- descriptions d'objets</li>
-		<li style="list-style-type:none">- textes explicatifs</li>
-		<li style="list-style-type:none">- champs de <a href="connexion.html">connexion</a> ou d'<a href="inscription.html">inscription</a></li>
-		<li style="list-style-type:none">- onglets</li>
-		<li style="list-style-type:none">- </li>
-	</ul>
+		<p>Adresse e-mail</p>
+		    <input type="mail" name="mail">
+		    <p>Mot de passe</p>
+		    <input type="password" name="pass1">
+			<p>
+			<a class="Connexion" href="accueil.php">Mot de passe oublié</a>
+			</p>
+		<p><input type="checkbox" name="Restez Connecté" id="Restez Connecté" /> <label for="Restez Connecté">Restez Connecté</label></p>
+		<input type="submit" class="bouton_co" value="Connexion">
+		<div style="text-align: right;padding-right: 300px; padding-bottom: 100px">
+		<h3>Vous êtes nouveau sur BidBay?</h3>
+		Commencer dès maintenant. C'est simple et rapide!
+		<p>
+		</p>
+		<a class="bouton_inscr" href="index2.html">Inscription</a>
+		</div>
 		
-	<p class=prix>prix : 50 €<br><br><br><br><br></p>
-	<p class=fin>Attention, enchère bientôt terminée</p>
-	<a class="bouton_encherir" href="index.html">Enchérir</a>
-	<a class="bouton_depos" href="index.html">Déposer</a>
-	<a class="bouton_payer" href="index.html"><span class="paye">Payer</span></a>
-	<a class="bouton_noter" href="index.html"><span class="note">Noter</span></a>
-
 <?php
 	//require 'headfoot.php';
 	footerHTML();
