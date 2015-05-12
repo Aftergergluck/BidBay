@@ -5,9 +5,10 @@
 
 <h1 class="Tpage">Inscription</h1>
 	
-	<div class="center"><h2 class="Tdesc">Commencez à utiliser BidBay</h2></div><br><br>
-	<div>
-	    <form action="admin_connexion.php" method="post" enctype="multipart/form-data">
+	
+	<div class="gauche2_3">
+		<div class="center"><h2 class="Tdesc">Commencez à utiliser BidBay</h2></div><br><br>
+	    <form action="post_inscription.php" method="post" enctype="multipart/form-data">
 		<div class="gauche">
 		    <p>Prénom</p>
 		    <input type="text" name="prenom">
@@ -17,7 +18,7 @@
 		    <input type="password" name="pass1">
 		    <p>Confirmez le mot de passe</p>
 		    <input type="password" name="pass2">
-		</div class="gauche2_3">
+		</div>
 		<div class="droite">
 		    <p>Nom</p>
 		    <input type="text" name="nom">
@@ -32,6 +33,10 @@
 		    </div>
 		</div>
 	    </form>
+	</div>
+	<div class="droite1_3">
+		<p>Vous avez déjà un compte ?<br><br><br><br>
+		<a class="bouton_co" href="connexion.php">Connexion</a>
 	</div>
 
 <?php
