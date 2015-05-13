@@ -2,15 +2,29 @@
 	require 'head_foot.php';
 	headerHTML();
 ?>
+<link href="jquery-ui.css" rel="stylesheet">
+<script src="external/jquery/jquery.js"></script>
+<script src="jquery-ui.js"></script>
 
 <h1 class="Tpage">Bienvenu sur BidBay ! </h1>
+	<p>Fromage</p>
+	<input id="datepicker" type="date" name="date">
+	<script type="text/javascript">
+   
+		$( "#datepicker" ).datepicker({
+		inline: true
+		});
+
 		
+	</script>
+
+
 	<div class="Dernobjaj"> 
 		<h2 class="Tdesc">Derniers objets ajoutés : </h2>
 		<h3 class="Tobj">Nom Objet</h3>
 			
 		<p>Tout type de texte : </p>
-		<ul>file:///home/manu/Travail/Projets/BidBay/Sources/index.html
+		<ul>
 			<li style="list-style-type:none">- descriptions d'objets</li>
 			<li style="list-style-type:none">- textes explicatifs</li>
 			<li style="list-style-type:none">- champs de <a href="connexion.html">connexion</a> ou d'<a href="inscription.html">inscription</a></li>
@@ -28,6 +42,6 @@
 	</div>
 	
 <?php
-	//require 'headfoot.php';
+	
 	footerHTML();
 ?>

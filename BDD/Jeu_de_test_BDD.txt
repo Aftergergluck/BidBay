@@ -1,0 +1,15 @@
+1/ Tous les utilisateurs inscrits
+2/ Tous les utilisateurs inscrits depuis 3 jours
+3/ Utilisateurs ayant vendus le plus d'objets
+4/ Données de l'utilisateur ayant pour nom "Michel"
+5/ SAvoir quelle note un utilisateur a donner a un autre utilisateur
+6/ Dernière vente terminée
+7/ La vente qui va se terminer le plus rapidement dans le temps
+8/ Les 3 derniers objets vendus
+9/ L'utilisateur ayant acheté le plus d'objet
+10/ Les utilisateurs ayant enchéris sur la vente "Petit poids chez soi"
+11/ Derniers utilisateur inscrit
+12/ Note globale d'un utilisateur
+13/ Nombre d'objet dans une catégorie
+14/ Nombre de catégories
+15/ Vente de l'utilisateur "Michel" en cours
