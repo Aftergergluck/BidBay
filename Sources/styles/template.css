@@ -4,6 +4,7 @@ p.fin
   font-weight: bolder;
   color: red;
 }
+
 /* Corps */
 body
 {
@@ -56,9 +57,9 @@ header, section, footer,nav
 	width:90%;
 	border: 8px solid #000;
 	-moz-border-bottom-colors:#8d8d8d #9a9a9a #b2b2b2 #bdbdbd #c3c3c3 #cccccc #d6d6d6 #e1e1e1;
-    -moz-border-top-colors:  #8d8d8d #9a9a9a #b2b2b2 #bdbdbd #c3c3c3 #cccccc #d6d6d6 #e1e1e1;
-    -moz-border-left-colors: #8d8d8d #9a9a9a #b2b2b2 #bdbdbd #c3c3c3 #cccccc #d6d6d6 #e1e1e1;
-    -moz-border-right-colors:#8d8d8d #9a9a9a #b2b2b2 #bdbdbd #c3c3c3 #cccccc #d6d6d6 #e1e1e1;
+    	-moz-border-top-colors:  #8d8d8d #9a9a9a #b2b2b2 #bdbdbd #c3c3c3 #cccccc #d6d6d6 #e1e1e1;
+    	-moz-border-left-colors: #8d8d8d #9a9a9a #b2b2b2 #bdbdbd #c3c3c3 #cccccc #d6d6d6 #e1e1e1;
+    	-moz-border-right-colors:#8d8d8d #9a9a9a #b2b2b2 #bdbdbd #c3c3c3 #cccccc #d6d6d6 #e1e1e1;
 	-webkit-border-top-left-radius:9px;
 	-moz-border-radius-topleft:9px;
 	border-top-left-radius:9px;
@@ -125,6 +126,7 @@ img.logo
 	padding-left:5.7%;
 	width:45%;	
 }
+/* Images boutons */
 .img_rech
 {
 	padding-top:4px;
@@ -216,6 +218,30 @@ div.entete
 	-webkit-border-bottom-left-radius:9px;
 	-moz-border-radius-bottomleft:9px;
 	border-bottom-left-radius:9px;
+}
+div.droite
+{
+	float:right;
+	margin-top:-334px;
+	margin-right:40%;
+	width:30%;
+
+}
+div.center
+{
+	text-align:center;
+}
+
+div.gauche
+{
+	width:30%;
+	margin-left:3%;
+	margin-bottom:20px;
+}
+div.gauche2_3
+{
+	display:inline-block;
+	width:66%;
 }
 
 /* Boutons */
