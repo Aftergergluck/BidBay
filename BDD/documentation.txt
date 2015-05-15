@@ -1,0 +1,5 @@
+Pour comprendre les différents types pour les date/heures, il vous est demandé de consulté la documentation ci-dessous (en français) :
+ - http://docs.postgresql.fr/8.2/datatype-datetime.html
+
+Pour les utilisations de la base de données, il pourrait être judicieux d'utiliser les fonctions listées dans le lien ci-dessous :
+ - http://docs.postgresql.fr/8.2/functions.html
