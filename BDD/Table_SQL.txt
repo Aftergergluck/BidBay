@@ -1,11 +1,11 @@
-#------------------------------------------------------------
-#        Script MySQL.
-#------------------------------------------------------------
+--------------------------------------------------------------
+--        Script MySQL.
+--------------------------------------------------------------
 
 
-#------------------------------------------------------------
-# Table Utilisateur
-#------------------------------------------------------------
+--------------------------------------------------------------
+-- Table Utilisateur
+--------------------------------------------------------------
 
 CREATE TABLE Utilisateur(
         mailUtilisateur   Varchar (32) NOT NULL ,
@@ -17,13 +17,14 @@ CREATE TABLE Utilisateur(
         adresseUser       Varchar (32) NOT NULL ,
         telephone         Int NOT NULL ,
         dateNaissanceUser Date NOT NULL ,
+	dateInscription	  Timestamp NOT NULL ,
         PRIMARY KEY (mailUtilisateur )
-)ENGINE=InnoDB;
+);
 
 
-#------------------------------------------------------------
-# Table Objet
-#------------------------------------------------------------
+--------------------------------------------------------------
+-- Table Objet
+--------------------------------------------------------------
 
 CREATE TABLE Objet(
         IdObjet           Int NOT NULL ,
@@ -31,35 +32,35 @@ CREATE TABLE Objet(
         nomObj            Varchar (32) NOT NULL ,
         decriptionObj     Varchar (32) NOT NULL ,
         ImageObj          Varchar (32) NOT NULL ,
-        pasObjet          Float NOT NULL ,
-        quantiteObj       Int ,
-        dateDebutVente    Date ,
-        dateLimiteVente   Date ,
-        idCategorie       Int ,
-        DateVente         Date ,
-        MontantVente      Float ,
+        pasObjet          Float NOT NULL DEFAULT 1,
+        quantiteObj       Int NOT NULL,
+        dateDebutVente    Timestamp NOT NULL,
+        dateLimiteVente   Timestamp NOT NULL,
+        idCategorie       Int NOT NULL,
         mailUtilisateur   Varchar (32) NOT NULL ,
-        DateAchatObj      Date ,
-        MontantAchatObj   Float ,
-        mailUtilisateur_1 Varchar (32) NOT NULL ,
-        PRIMARY KEY (IdObjet )
-)ENGINE=InnoDB;
+        mailutilisateuracheteur Varchar (32) NOT NULL ,
+	datePaiement	  Timestamp ,
+        PRIMARY KEY (IdObjet ) ,
+	CHECK (prix > 0) ,
+	CHECK (pasobjet > 0) ,
+	CHECK (dateDebutVente < dateLimiteVente)
+);
 
 
-#------------------------------------------------------------
-# Table Categorie
-#------------------------------------------------------------
+--------------------------------------------------------------
+-- Table Categorie
+--------------------------------------------------------------
 
 CREATE TABLE Categorie(
         idCategorie   Int NOT NULL ,
         typeCategorie Varchar (32) ,
         PRIMARY KEY (idCategorie )
-)ENGINE=InnoDB;
+);
 
 
-#------------------------------------------------------------
-# Table encherir
-#------------------------------------------------------------
+--------------------------------------------------------------
+-- Table encherir
+--------------------------------------------------------------
 
 CREATE TABLE encherir(
         dateEnchere     Date ,
@@ -67,29 +68,112 @@ CREATE TABLE encherir(
         mailUtilisateur Varchar (32) NOT NULL ,
         IdObjet         Int NOT NULL ,
         PRIMARY KEY (mailUtilisateur ,IdObjet )
-)ENGINE=InnoDB;
+);
 
 
-#------------------------------------------------------------
-# Table note
-#------------------------------------------------------------
+--------------------------------------------------------------
+-- Table note
+--------------------------------------------------------------
 
 CREATE TABLE note(
         noteFiabilite     Float NOT NULL ,
         noteComm          Float NOT NULL ,
         noteDelai         Float NOT NULL ,
-        dateNoteUser      Date NOT NULL ,
+        dateNoteUser      Timestamp NOT NULL ,
         mailUtilisateur   Varchar (32) NOT NULL ,
-        mailUtilisateur_1 Varchar (32) NOT NULL ,
+        mailutilisateuracheteur Varchar (32) NOT NULL ,
         IdObjet           Int NOT NULL ,
-        PRIMARY KEY (mailUtilisateur ,mailUtilisateur_1 ,IdObjet )
-)ENGINE=InnoDB;
+        PRIMARY KEY (mailUtilisateur ,mailUtilisateuracheteur ,IdObjet ) ,
+	CHECK (noteFiabilite > 0) ,
+	CHECK (noteComm > 0) ,
+	CHECK (noteDelai > 0)
+);
 
 ALTER TABLE Objet ADD CONSTRAINT FK_Objet_idCategorie FOREIGN KEY (idCategorie) REFERENCES Categorie(idCategorie);
 ALTER TABLE Objet ADD CONSTRAINT FK_Objet_mailUtilisateur FOREIGN KEY (mailUtilisateur) REFERENCES Utilisateur(mailUtilisateur);
-ALTER TABLE Objet ADD CONSTRAINT FK_Objet_mailUtilisateur_1 FOREIGN KEY (mailUtilisateur_1) REFERENCES Utilisateur(mailUtilisateur);
+ALTER TABLE Objet ADD CONSTRAINT FK_Objet_mailutilisateuracheteur FOREIGN KEY (mailutilisateuracheteur) REFERENCES Utilisateur(mailUtilisateur);
 ALTER TABLE encherir ADD CONSTRAINT FK_encherir_mailUtilisateur FOREIGN KEY (mailUtilisateur) REFERENCES Utilisateur(mailUtilisateur);
 ALTER TABLE encherir ADD CONSTRAINT FK_encherir_IdObjet FOREIGN KEY (IdObjet) REFERENCES Objet(IdObjet);
 ALTER TABLE note ADD CONSTRAINT FK_note_mailUtilisateur FOREIGN KEY (mailUtilisateur) REFERENCES Utilisateur(mailUtilisateur);
-ALTER TABLE note ADD CONSTRAINT FK_note_mailUtilisateur_1 FOREIGN KEY (mailUtilisateur_1) REFERENCES Utilisateur(mailUtilisateur);
+ALTER TABLE note ADD CONSTRAINT FK_note_mailutilisateuracheteur FOREIGN KEY (mailutilisateuracheteur) REFERENCES Utilisateur(mailUtilisateur);
 ALTER TABLE note ADD CONSTRAINT FK_note_IdObjet FOREIGN KEY (IdObjet) REFERENCES Objet(IdObjet);
+
+
+---------------------------------
+-- Insertion des valeurs de test
+---------------------------------
+
+INSERT INTO utilisateur VALUES ('jean@test.com','mdp1','Dupont','Jean','u','default','1 rue du test','0123456789','1/1/1990',CURRENT_TIMESTAMP);
+INSERT INTO utilisateur VALUES ('paul@test.com','mdp2','Dupont','Paul','u','default','2 rue du test','9876543210','1/1/1991',CURRENT_TIMESTAMP);
+INSERT INTO utilisateur VALUES ('pierre@test.com','mdp3','Dupond','Pierre','u','default','3 rue du test','1470258369','1/1/1992',CURRENT_TIMESTAMP);
+INSERT INTO utilisateur VALUES ('michel@test.fr','mdp','Duponthe','Michel','u','default','10 rue du test','0000000000','1/1/1993',CURRENT_TIMESTAMP);
+INSERT INTO utilisateur VALUES ('florian@test.fr','mdp4','Duponde','Florian','u','default','89 rue du ru','2486179305','1/1/1994',CURRENT_TIMESTAMP);
+
+
+
+
+---------------------------------
+-- Requêtes de test
+---------------------------------
+
+-- 1/ Tous les utilisateurs inscrits
+SELECT * FROM utilisateur;
+
+-- 2/ Tous les utilisateurs inscrits depuis 3 jours
+-- pas possible
+
+-- 3/ Utilisateurs ayant vendus le plus d'objets
+
+
+-- 4/ Données de l'utilisateur ayant pour nom "Michel"
+SELECT *
+FROM utilisateur
+WHERE nom = 'Michel';
+
+-- 5/ SAvoir quelle note un utilisateur a donner a un autre utilisateur
+SELECT notefiabilite, notecomm, notedelai
+FROM note
+WHERE mailutilisateur = 'user1' AND mailutilisateuracheteur = 'user2';
+
+-- 6/ Dernière vente terminée
+
+
+
+-- 7/ La vente qui va se terminer le plus rapidement dans le temps
+
+
+
+-- 8/ Les 3 derniers objets vendus
+
+
+-- 9/ L'utilisateur ayant acheté le plus d'objet
+
+
+-- 10/ Les utilisateurs ayant enchéris sur la vente "Petit poids chez soi"
+
+
+-- 11/ Derniers utilisateur inscrit
+-- pas possible
+
+-- 12/ Note globale d'un utilisateur
+SELECT * 
+FROM note n, utilisateur u
+WHERE u.mailutilisateur = n.mailutilisateuracheteur;
+-- puis calcul moyenne a partir des différentes ligne de la réponse
+
+-- 13/ Nombre d'objet dans une catégorie
+SELECT cat.nom, count(idobjet)
+FROM objet o, categorie cat
+GROUP BY o.idcategorie;
+
+-- 14/ Nombre de catégories
+SELECT count(idcategorie)
+FROM categorie;
+
+-- 15/ Vente de l'utilisateur "Michel@test.com" en cours
+SELECT o.*
+FROM object o, utilisateur u
+WHERE o.mailutilisateur = u.mailutilisateur
+AND u.mailutilisateur = 'michel@test.com'
+AND (o.datelimitevente - CURRENT_TIMESTAMP) > 0;
+
