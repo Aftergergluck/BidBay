@@ -6,22 +6,29 @@
 <script src="javascriptv2/external/jquery/jquery.js"></script>
 <script src="javascriptv2/jquery-ui.js"></script>
 <?php
-          // Infos de connexion
-      $db = "Bidbay";
-      $user = "postgres";
-      $pass = "postgres";
+          
 
-      // Connexion
+
+        function afficher(){
+          $fro = "fromage";
+          echo "fromage ";
+          echo $fro;
+        }
+
+        function afficherdb(){
+          $db = "Bidbay";
+          $user = "postgres";
+          $pass = "postgres";
+          $connect = pg_connect("dbname=$db user=$user password=$pass")
+          or die("Erreur de connexion");
   
-       $connect = pg_connect("dbname=$db user=$user password=$pass")
-       or die("Erreur de connexion");
-
-       function afficherObj(){
           $query = "SELECT COUNT (*) FROM objet;" ;
           $result = pg_exec($connect, $query);
           $row=pg_fetch_array($result);
-          $idobj = $row[0] + 1 ;
-       }
+          echo $row[0];
+        }
+
+
 ?>
 
 
@@ -31,7 +38,10 @@
 <div class="scroll-pane ui-widget ui-widget-header ui-corner-all">
   <div class="scroll-content">
     <div class="scroll-content-item">
-      
+        <?php 
+          afficher();
+          afficherdb();
+         ?>
 
 
 
