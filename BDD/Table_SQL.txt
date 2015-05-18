@@ -18,7 +18,11 @@ CREATE TABLE Utilisateur(
         telephone         Int NOT NULL ,
         dateNaissanceUser Date NOT NULL ,
 	dateInscription	  Timestamp NOT NULL ,
-        PRIMARY KEY (mailUtilisateur )
+	nbObjVendu	  Int DEFAULT 0,
+	nbObjAch	  Int DEFAULT 0,
+        PRIMARY KEY (mailUtilisateur ) ,
+	CHECK (nbObjVendu >= 0) ,
+	CHECK (nbObjAch >= 0)
 );
 
 
@@ -42,7 +46,7 @@ CREATE TABLE Objet(
 	datePaiement	  Timestamp ,
         PRIMARY KEY (IdObjet ) ,
 	CHECK (prix > 0) ,
-	CHECK (pasobjet > 0) ,
+	CHECK (pasobjet > 0.5) ,
 	CHECK (dateDebutVente < dateLimiteVente)
 );
 
@@ -53,7 +57,7 @@ CREATE TABLE Objet(
 
 CREATE TABLE Categorie(
         idCategorie   Int NOT NULL ,
-        typeCategorie Varchar (32) ,
+        typeCategorie Varchar (32) NOT NULL ,
         PRIMARY KEY (idCategorie )
 );
 
@@ -103,13 +107,17 @@ ALTER TABLE note ADD CONSTRAINT FK_note_IdObjet FOREIGN KEY (IdObjet) REFERENCES
 -- Insertion des valeurs de test
 ---------------------------------
 
-INSERT INTO utilisateur VALUES ('jean@test.com','mdp1','Dupont','Jean','u','default','1 rue du test','0123456789','1/1/1990',CURRENT_TIMESTAMP);
-INSERT INTO utilisateur VALUES ('paul@test.com','mdp2','Dupont','Paul','u','default','2 rue du test','9876543210','1/1/1991',CURRENT_TIMESTAMP);
-INSERT INTO utilisateur VALUES ('pierre@test.com','mdp3','Dupond','Pierre','u','default','3 rue du test','1470258369','1/1/1992',CURRENT_TIMESTAMP);
-INSERT INTO utilisateur VALUES ('michel@test.fr','mdp','Duponthe','Michel','u','default','10 rue du test','0000000000','1/1/1993',CURRENT_TIMESTAMP);
-INSERT INTO utilisateur VALUES ('florian@test.fr','mdp4','Duponde','Florian','u','default','89 rue du ru','2486179305','1/1/1994',CURRENT_TIMESTAMP);
+INSERT INTO utilisateur VALUES ('jean@test.com','mdp1','Dupont','Jean','u','default','1 rue du test','0123456789','1/1/1990',CURRENT_TIMESTAMP,0,5);
+INSERT INTO utilisateur VALUES ('paul@test.com','mdp2','Dupont','Paul','u','default','2 rue du test','0987654321','1/1/1991',CURRENT_TIMESTAMP,1,4);
+INSERT INTO utilisateur VALUES ('pierre@test.com','mdp3','Dupond','Pierre','u','default','3 rue du test','1470258369','1/1/1992',CURRENT_TIMESTAMP,2,3);
+INSERT INTO utilisateur VALUES ('michel@test.fr','mdp','Duponthe','Michel','u','default','10 rue du test','0000000000','1/1/1993',CURRENT_TIMESTAMP,3,2);
+INSERT INTO utilisateur VALUES ('florian@test.fr','mdp4','Duponde','Florian','u','default','89 rue du ru','0248617930','1/1/1994',CURRENT_TIMESTAMP,4,1);
 
-
+INSERT INTO objet VALUES (1,1,'Pomme','un lot de pommes','default',0.5,10,'2015-10-05 04:05:06','2015-10-06 04:05:06',1,'jean@test.com','paul@test.com',NULL);
+INSERT INTO objet VALUES (2,1.5,'Poire','une poire','default',1,1,'2015-10-05 04:05:06','2015-10-06 04:05:06',1,'jean@test.com','paul@test.com',NULL);
+INSERT INTO objet VALUES (3,2,'Cuillère','une cuillère','default',1.5,1,'2015-10-05 04:05:06','2015-10-06 04:05:06',1,,'jean@test.com','paul@test.com',NULL);
+INSERT INTO objet VALUES (4,2.5,'chaussette','une paire de chaussettes','default',5,1,'2015-10-05 04:05:06','2015-10-06 04:05:06',1,,'jean@test.com','paul@test.com',NULL);
+INSERT INTO objet VALUES (5,3,'gomme','une gomme','default',2.5,1,'2015-10-05 04:05:06','2015-10-06 04:05:06',1,,'jean@test.com','paul@test.com',NULL);
 
 
 ---------------------------------
@@ -120,9 +128,9 @@ INSERT INTO utilisateur VALUES ('florian@test.fr','mdp4','Duponde','Florian','u'
 SELECT * FROM utilisateur;
 
 -- 2/ Tous les utilisateurs inscrits depuis 3 jours
--- pas possible
+-- 
 
--- 3/ Utilisateurs ayant vendus le plus d'objets
+-- 3/ Utilisateur ayant vendus le plus d'objets
 
 
 -- 4/ Données de l'utilisateur ayant pour nom "Michel"
@@ -147,13 +155,13 @@ WHERE mailutilisateur = 'user1' AND mailutilisateuracheteur = 'user2';
 
 
 -- 9/ L'utilisateur ayant acheté le plus d'objet
+-- cf point 3
 
-
--- 10/ Les utilisateurs ayant enchéris sur la vente "Petit poids chez soi"
+-- 10/ Les utilisateurs ayant enchéris sur la vente "Pomme"
 
 
 -- 11/ Derniers utilisateur inscrit
--- pas possible
+
 
 -- 12/ Note globale d'un utilisateur
 SELECT * 
