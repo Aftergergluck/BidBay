@@ -35,8 +35,8 @@
 	    </form>
 	</div>
 	<div class="droite1_3">
-		<p>Vous avez déjà un compte ?<br><br><br><br>
-		<a class="bouton_co" href="connexion.php">Connexion</a>
+		<p><br><br><br><br>Vous avez déjà un compte ?<br><br><br>
+		<a class="bouton_co" href="connexion.php">Connexion</a><br><br><br><br><br><br><br></p>
 	</div>
 
 <?php

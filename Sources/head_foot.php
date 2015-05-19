@@ -14,7 +14,7 @@
 		if(isset($_SESSION) && (!isset($_SESSION['login']) || ($_SESSION['login']=="Deco") || ($_SESSION['login']=="erreur") || ($_SESSION['login']=="manque"))) //Déconnecté
 		{
 			echo "<a class=\"bouton_inscr\" href=\"inscription.php\">Inscription</a>";
-			echo "<a class=\"bouton_co\" href=\"connexion.php\">Connexion</a>";
+			echo "<a class=\"bouton_co_head\" href=\"connexion.php\">Connexion</a>";
 		}
 		else
 		{
@@ -26,6 +26,7 @@
 		echo "<a href=\"accueil.php\">Accueil</a>";
 		echo "<a href=\"categories.php\">Catégories</a>";
 		echo "<a href=\"encheres.php\">Enchères</a>";
+		echo "<a href=\"vendre.php\">Vendre</a>";
 		echo "<a href=\"moncompte.php\">Mon Compte</a>";
 		echo "<a href=\"faq.php\">FAQ/Aide</a>";
 		echo "</nav>";
