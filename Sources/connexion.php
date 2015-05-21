@@ -13,10 +13,10 @@
 		<?php
 			switch ($error){
 				case 1:
-					echo "<B>merci de saisir vos identifiants</B>";
+					echo "<B class=\"error\">merci de saisir vos identifiants</B>";
 					break;
 				case 2:
-					echo "<B>Votre mail ou mot de passe est incorrect</B>";
+					echo "<B class=\"error\">Votre mail ou mot de passe est incorrect</B>";
 					break;
 			}
 		?>
