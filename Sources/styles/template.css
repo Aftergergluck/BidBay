@@ -1,4 +1,4 @@
-/* Paragraphe */
+﻿/* Paragraphe */
 p.fin
 {
   font-weight: bolder;
@@ -91,7 +91,7 @@ a.deco
 	margin-top:20px;
 	margin-right:5%;
 }
-a.bouton_inscr
+a.bouton_inscr_head
 {
 	float:right;
 	margin-top:20px;
@@ -348,6 +348,56 @@ div.droite1_3 {
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#8CC6D7', endColorstr='#8ca4d7');
 	background-color:#8CC6D7;
 }.bouton_co:active {
+	position:relative;
+	top:1px;
+	-webkit-box-shadow: 0px 1px 0px #62828b;
+    -moz-box-shadow: 0px 1px 0px #62828b;
+    box-shadow: 0px 1px 0px #62828b;
+}
+.bouton_inscr_head{
+	-moz-box-shadow:inset 0px 1px 4px -1px #8FCF3C;
+	-webkit-box-shadow:inset 0px 1px 4px -1px #8FCF3C;
+	box-shadow:inset 0px 1px 4px -1px #8FCF3C;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #68c13b), color-stop(1, #8FCF3C) );
+	background:-moz-linear-gradient( center top, #68c13b 5%, #8FCF3C 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#68c13b', endColorstr='#8FCF3C');
+	background-color:#68c13b;
+	-webkit-border-top-left-radius:9px;
+	-moz-border-radius-topleft:9px;
+	border-top-left-radius:9px;
+	-webkit-border-top-right-radius:9px;
+	-moz-border-radius-topright:9px;
+	border-top-right-radius:9px;
+	-webkit-border-bottom-right-radius:9px;
+	-moz-border-radius-bottomright:9px;
+	border-bottom-right-radius:9px;
+	-webkit-border-bottom-left-radius:9px;
+	-moz-border-radius-bottomleft:9px;
+	border-bottom-left-radius:9px;
+	-webkit-box-shadow: 0px 2px 0px #60854c;
+    -moz-box-shadow: 0px 2px 0px #60854c;
+    box-shadow: 0px 2px 0px #60854c;
+	text-indent:0;
+	border:1px solid #8FCF3C;
+	display:inline-block;
+	color:#2a451c;
+	font-family: 'Calibri', sans-serif;
+	font-size:15px;
+	font-weight:bold;
+	font-style:normal;
+	height:30px;
+	line-height:30px;
+	width:100px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 1px 6px #2a451c;
+}
+.bouton_inscr_head:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #8FCF3C), color-stop(1, #68c13b) );
+	background:-moz-linear-gradient( center top, #8FCF3C 5%, #68c13b 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#8FCF3C', endColorstr='#68c13b');
+	background-color:#8FCF3C;
+}.bouton_inscr_head:active {
 	position:relative;
 	top:1px;
 	-webkit-box-shadow: 0px 1px 0px #62828b;
