@@ -24,6 +24,27 @@
   $lot = $_POST['lot'];
   $desc = $_POST['desc'];
   $datefin = $_POST['datefin'];
+      
+      //Traitement de l'image et stocke dans fichier uploads
+      if (isset($_FILES['image']) AND $_FILES['image']['error'] == 0)
+      {
+        // Test de la taille du fichier < 3Mo
+        if ($_FILES['image']['size'] <= 3000000)
+        {
+                // Testons si l'extension est autorisée
+                $infosfichier = pathinfo($_FILES['image']['name']);
+                $extension_upload = $infosfichier['extension'];
+                $extensions_autorisees = array('jpg', 'jpeg', 'gif', 'png');
+                if (in_array($extension_upload, $extensions_autorisees))
+                {
+                        // On peut valider le fichier et le stocker définitivement
+                        move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/' .
+basename($_FILES['image']['name']));
+                        echo "L'envoi a bien été effectué !";
+                }
+        }
+      }
+
   
   // Recuperation nombre objets dans BDD
   // Affectation l'idobjet
