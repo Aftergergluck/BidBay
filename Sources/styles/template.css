@@ -4,6 +4,11 @@
   font-weight: bolder;
   color: red;
 }
+.fdate 
+{
+	width:40px;
+}
+
 
 /* Corps */
 body
