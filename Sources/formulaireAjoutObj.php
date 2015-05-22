@@ -12,11 +12,11 @@
       </script>
       
       <!-- Formulaire d'ajout d'objet -->
-  	<form method="POST" action="gestionFormAjoutObj.php">
+  	<form method="POST" action="gestionFormAjoutObj.php" enctype="multipart/form-data">
 			<fieldset>
         <div class="pageobj" >
 				<h2 class="Tdesc"> Ajouter un objet en ligne <br><br> </h2>
-			 	Nom de cet objet : <br><input type="text" name="nomobj" class="nomobj">
+			 	Nom de cet objet : <br><input type="text" name="nomobj" class="nomobj" onblur="verifNomobj(this)"  >
         <br><br>
         
          <!--Selectmenu de javascript/HTML avec groupes/sous-groupes -->
@@ -57,6 +57,30 @@
         
         <input type="submit" name="submit" value="Deposer"/>
       </div>   
+
+      
+      <?php
+      if (isset($_FILES['image']) AND $_FILES['image']['error'] == 0)
+      {
+        // Test de la taille du fichier < 3Mo
+        if ($_FILES['image']['size'] <= 3000000)
+        {
+                // Testons si l'extension est autorisée
+                $infosfichier = pathinfo($_FILES['image']['name']);
+                $extension_upload = $infosfichier['extension'];
+                $extensions_autorisees = array('jpg', 'jpeg', 'gif', 'png');
+                if (in_array($extension_upload, $extensions_autorisees))
+                {
+                        // On peut valider le fichier et le stocker définitivement
+                        move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/' . basename($_FILES['image']['name']));
+                        echo "L'envoi a bien été effectué !";
+                }
+        }
+      }
+
+      ?>
+
+
         
        <!--Code fonctions javascript  -->
       <script> 
@@ -74,22 +98,56 @@
              })
           }); 
           
+
            /*
           $( "#datepicker").datepicker.setDefaults({
             $.datepicker.regional[ "fr" ]
           }); */
+
            
            //Element spinner, pas 5                                                           
           $( ".spinner" ).spinner({
              step: 5
           });
-                                               
-           //Selectmenu, �paisseur 200      
+                              
+
+           //Selectmenu, épaisseur 200      
           $( "#selectmenu" ).selectmenu({
              width: 200
           });
+
           
-         
+          //Nom d'objet compris entre 4 et 25 caractères  
+          function verifNomobj(champ)
+          {
+           if(champ.value.length < 4 || champ.value.length > 25)
+           {
+              surligne(champ, true);
+              return false;
+           }
+           else
+           {
+              surligne(champ, false);
+              return true;
+           }
+          }
+
+          function verifSelectmenu(champ)
+          {
+           if(champ.value < 4 || champ.value.length > 25)
+           {
+              surligne(champ, true);
+              return false;
+           }
+           else
+           {
+              surligne(champ, false);
+              return true;
+           }
+          }
+           
+                 
+
       </script>
 			</fieldset>
 		</form>
