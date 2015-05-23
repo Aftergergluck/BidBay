@@ -16,7 +16,9 @@
 
 <!--si l'utilisateur ne souhaite finalement pas miser il peut retourner à la page de l'objet-->
 <div class= "droite1_3">
-				<a class="Connexion" href="objet.php?id=".$idobj>Retour à la page de l'objet</a>
+				<?php
+					echo "<a class=\"Connexion\" href=\"objet.php?id=".$idobj."\">Retour à la page de l'objet</a>";
+				?>
 </div>
 <form action="post_acheter.php" method="post" enctype="multipart/form-data">
 <div class ="gauche2_3">

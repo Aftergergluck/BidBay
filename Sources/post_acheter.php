@@ -2,7 +2,8 @@
 	require 'head_foot.php';
 	headerHTML();
 	session_start();
-	$nomobj = "Pomme";
+	$idobj = $_SESSION['idobj'];
+	$nomobj = $_SESSION['nomobj'];
 	$login = $_SESSION['login'];
 	$pas = $_SESSION['pasobj'];
 	$ancienprix = $_SESSION['prix'];
@@ -32,7 +33,7 @@
 			$connect = pg_connect("dbname=$db user=$user password=$pass");
 			/*on change dans la base de données on met à jour le prix et le dernier utilisateur qui a miser sur l'objet*/
 			pg_exec($connect,"UPDATE objet SET mailacheteur='$login', prixinit='$nouveauprix' WHERE nomobj='$nomobj'");
-			header('Location: objet.php');
+			header("Location: objet.php?id='$idobj'");
 		}
 ?>
 
