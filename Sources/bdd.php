@@ -33,7 +33,7 @@
 		$result = requeteBDD($query);
 		$row = pg_fetch_array($result);	
 		$objet = array('idobjet' => $row[0], 'nomobj' =>$row[1], 'prixinit' => $row[2],
-		 'descriptionobj' => $row[5], 'mailvendeur' => $row[10] );
+		 'descriptionobj' => $row[5], 'mailvendeur' => $row[9] );
 		
 		return $objet;
 	}
@@ -52,9 +52,13 @@
 */
 	function afficherobjet($idobjet){
 		$objet = getinfoobjet($idobjet);
-		echo "<h3> {$objet['nomobj']} </h3>";
-        echo '<img class="image" src="soccer-ball.png">';
-        echo '<p>  Super ballon de 1998, de tres bonne qualite bla bla bla</p>';
+		$lienphoto = "uploads/photobjet/objet".$idobjet ;
+		echo "<h3 style='float :right'>{$objet['nomobj']} </h3>";
+		echo "<h3 style ='float: right'> <br /> <br /><br />{$objet['mailvendeur']} </h3>";
+        echo "<img class='image' style='position: relative' src='$lienphoto' >";
+        echo "<p>Mis en vente à :  {$objet['prixinit']} € </p>   ";
+        echo "<p>  {$objet['descriptionobj']} </p>";
+        "uploads/photoobjet/objet".$row[0].".jpg";
 	}
 
 
