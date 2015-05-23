@@ -24,6 +24,7 @@
   $lot = $_POST['lot'];
   $desc = $_POST['desc'];
   $duree = $_POST['duree'];
+  $envente = "envente";
 
   // Recuperation nombre objets dans BDD
   // Affectation l'idobjet
@@ -52,13 +53,13 @@
           now() + interval '$duree days',
           '$idCategorie',
           '$mail',
-          NULL,
-          NULL
+          '$envente'
+          
         );";                      
          
          
-  pg_query($insert);  
-  echo "Votre objet à bien été ajouté.";     
+  pg_query($insert);      
+  echo "Requete effectuee";     
 
 
 
