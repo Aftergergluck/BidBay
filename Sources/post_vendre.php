@@ -24,6 +24,7 @@
   $lot = $_POST['lot'];
   $desc = $_POST['desc'];
   $duree = $_POST['duree'];
+  $envente = "envente";
 
   // Recuperation nombre objets dans BDD
   // Affectation l'idobjet
@@ -51,7 +52,8 @@
           now(),
           now() + interval '$duree days',
           '$idCategorie',
-          '$mail'
+          '$mail',
+          '$envente'
           
         );";                      
          

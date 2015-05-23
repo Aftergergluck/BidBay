@@ -110,7 +110,7 @@
            
            //Element spinner, pas 5                                                           
           $( ".spinner" ).spinner({
-             step: 5
+             min: 1
           });
                               
 
