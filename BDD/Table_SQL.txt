@@ -8,21 +8,21 @@
 --------------------------------------------------------------
 
 CREATE TABLE Utilisateur(
-        mailUtilisateur   Varchar (32) NOT NULL ,
-        mdp               Varchar (32) NOT NULL ,
+        mailUtilisateur   Varchar (128) NOT NULL ,  --Taille max adresse mail 254 CHAR --> 128 juste milieu
+        mdp               Varchar (32) NOT NULL , 
         nom               Varchar (32) NOT NULL ,
         prenom            Varchar (32) NOT NULL ,
-        typeUser          Varchar (32) NOT NULL ,
-        imageUser         Varchar (32) NOT NULL ,
-        adresseUser       Varchar (32) NOT NULL ,
+        typeUser          Varchar (16) NOT NULL ,  --User/Admin pas besoin de 32 CHAR
+        --imageUser         Varchar (32) NOT NULL ,   StockÃ©es en local, nom de l'image = mailUtilisateur 
+        adresseUser       Varchar (254) NOT NULL ,  --Parce 32 CHAR pour une adresse c'est pas sympa  
         telephone         Int NOT NULL ,
         dateNaissanceUser Date NOT NULL ,
 	dateInscription	  Timestamp NOT NULL ,
-	nbObjVendu	  Int DEFAULT 0,
-	nbObjAch	  Int DEFAULT 0,
+	--nbObjVendu	  Int DEFAULT 0,  Pas nÃ©cessaire, en croisant Objet.mailvendeur et mailUtilisateur 
+	--nbObjAch	  Int DEFAULT 0,  idem
         PRIMARY KEY (mailUtilisateur ) ,
-	CHECK (nbObjVendu >= 0) ,
-	CHECK (nbObjAch >= 0)
+	--CHECK (nbObjVendu >= 0) ,
+	--CHECK (nbObjAch >= 0)
 );
 
 
@@ -31,18 +31,19 @@ CREATE TABLE Utilisateur(
 --------------------------------------------------------------
 
 CREATE TABLE Objet(
-        IdObjet           Int NOT NULL ,
-        prix              Float NOT NULL ,
+        idObjet           Int NOT NULL ,
+        
+        prixInit          Float NOT NULL ,
         nomObj            Varchar (32) NOT NULL ,
         decriptionObj     Varchar (32) NOT NULL ,
-        ImageObj          Varchar (32) NOT NULL ,
+        --imageObj          Varchar (32) NOT NULL ,   Pareil que pour Utilisateur
         pasObjet          Float NOT NULL DEFAULT 1,
         quantiteObj       Int NOT NULL,
         dateDebutVente    Timestamp NOT NULL,
         dateLimiteVente   Timestamp NOT NULL,
         idCategorie       Int NOT NULL,
-        mailUtilisateur   Varchar (32) NOT NULL ,
-        mailutilisateuracheteur Varchar (32) NOT NULL ,
+        mailVendeur       Varchar (128) NOT NULL ,
+        mailAcheteur      Varchar (128) NOT NULL ,
 	datePaiement	  Timestamp ,
         PRIMARY KEY (IdObjet ) ,
 	CHECK (prix > 0) ,
@@ -115,13 +116,13 @@ INSERT INTO utilisateur VALUES ('florian@test.fr','mdp4','Duponde','Florian','u'
 
 INSERT INTO objet VALUES (1,1,'Pomme','un lot de pommes','default',0.5,10,'2015-10-05 04:05:06','2015-10-06 04:05:06',1,'jean@test.com','paul@test.com',NULL);
 INSERT INTO objet VALUES (2,1.5,'Poire','une poire','default',1,1,'2015-10-05 04:05:06','2015-10-06 04:05:06',1,'jean@test.com','paul@test.com',NULL);
-INSERT INTO objet VALUES (3,2,'Cuillère','une cuillère','default',1.5,1,'2015-10-05 04:05:06','2015-10-06 04:05:06',1,,'jean@test.com','paul@test.com',NULL);
+INSERT INTO objet VALUES (3,2,'CuillÃ¨re','une cuillÃ¨re','default',1.5,1,'2015-10-05 04:05:06','2015-10-06 04:05:06',1,,'jean@test.com','paul@test.com',NULL);
 INSERT INTO objet VALUES (4,2.5,'chaussette','une paire de chaussettes','default',5,1,'2015-10-05 04:05:06','2015-10-06 04:05:06',1,,'jean@test.com','paul@test.com',NULL);
 INSERT INTO objet VALUES (5,3,'gomme','une gomme','default',2.5,1,'2015-10-05 04:05:06','2015-10-06 04:05:06',1,,'jean@test.com','paul@test.com',NULL);
 
 
 ---------------------------------
--- Requêtes de test
+-- RequÃªtes de test
 ---------------------------------
 
 -- 1/ Tous les utilisateurs inscrits
@@ -133,7 +134,7 @@ SELECT * FROM utilisateur;
 -- 3/ Utilisateur ayant vendus le plus d'objets
 
 
--- 4/ Données de l'utilisateur ayant pour nom "Michel"
+-- 4/ DonnÃ©es de l'utilisateur ayant pour nom "Michel"
 SELECT *
 FROM utilisateur
 WHERE nom = 'Michel';
@@ -143,7 +144,7 @@ SELECT notefiabilite, notecomm, notedelai
 FROM note
 WHERE mailutilisateur = 'user1' AND mailutilisateuracheteur = 'user2';
 
--- 6/ Dernière vente terminée
+-- 6/ DerniÃ¨re vente terminÃ©e
 
 
 
@@ -154,10 +155,10 @@ WHERE mailutilisateur = 'user1' AND mailutilisateuracheteur = 'user2';
 -- 8/ Les 3 derniers objets vendus
 
 
--- 9/ L'utilisateur ayant acheté le plus d'objet
+-- 9/ L'utilisateur ayant achetÃ© le plus d'objet
 -- cf point 3
 
--- 10/ Les utilisateurs ayant enchéris sur la vente "Pomme"
+-- 10/ Les utilisateurs ayant enchÃ©ris sur la vente "Pomme"
 
 
 -- 11/ Derniers utilisateur inscrit
@@ -167,14 +168,14 @@ WHERE mailutilisateur = 'user1' AND mailutilisateuracheteur = 'user2';
 SELECT * 
 FROM note n, utilisateur u
 WHERE u.mailutilisateur = n.mailutilisateuracheteur;
--- puis calcul moyenne a partir des différentes ligne de la réponse
+-- puis calcul moyenne a partir des diffÃ©rentes ligne de la rÃ©ponse
 
--- 13/ Nombre d'objet dans une catégorie
+-- 13/ Nombre d'objet dans une catÃ©gorie
 SELECT cat.nom, count(idobjet)
 FROM objet o, categorie cat
 GROUP BY o.idcategorie;
 
--- 14/ Nombre de catégories
+-- 14/ Nombre de catÃ©gories
 SELECT count(idcategorie)
 FROM categorie;
 
