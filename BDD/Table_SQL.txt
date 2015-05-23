@@ -1,4 +1,4 @@
-﻿--------------------------------------------------------------
+--------------------------------------------------------------
 --        Script MySQL.
 --------------------------------------------------------------
 
@@ -113,14 +113,26 @@ INSERT INTO utilisateur VALUES ('pierre@test.com','mdp3','Dupond','Pierre','u','
 INSERT INTO utilisateur VALUES ('michel@test.fr','mdp','Duponthe','Michel','u','10 rue du test','0000000000','1/1/1993',CURRENT_TIMESTAMP);
 INSERT INTO utilisateur VALUES ('florian@test.fr','mdp4','Duponde','Florian','u','89 rue du ru','0248617930','1/1/1994',CURRENT_TIMESTAMP);
 
-INSERT INTO categorie VALUES (1, 'Electromenager');
-INSERT INTO categorie VALUES (2, 'Ameublement');
-INSERT INTO categorie VALUES (3, 'Exterieur');
-INSERT INTO categorie VALUES (4, 'Habits');
-INSERT INTO categorie VALUES (5, 'Claviers');
-INSERT INTO categorie VALUES (6, 'Souris');
-INSERT INTO categorie VALUES (7, 'Pieces');
-INSERT INTO categorie VALUES (8, 'Autres');
+INSERT INTO categorie VALUES(1, 'Auto');
+INSERT INTO categorie VALUES(2, 'Moto');
+INSERT INTO categorie VALUES(3, 'Caravanes');
+INSERT INTO categorie VALUES(4, 'Pieces');
+INSERT INTO categorie VALUES(5, 'Ventes');
+INSERT INTO categorie VALUES(6, 'Locations');
+INSERT INTO categorie VALUES(7, 'Colocations');
+INSERT INTO categorie VALUES(8, 'Informatique');
+INSERT INTO categorie VALUES(9, 'Consoles & Jeux');
+INSERT INTO categorie VALUES(10, 'Image / Son');
+INSERT INTO categorie VALUES(11, 'Telephonie');
+INSERT INTO categorie VALUES(12, 'DVD / Films');
+INSERT INTO categorie VALUES(13, 'CD / Musique');
+INSERT INTO categorie VALUES(14, 'Instruments de musique');
+INSERT INTO categorie VALUES(15, 'Sports / Hobbies');
+INSERT INTO categorie VALUES(16, 'Jeux & Jouets');
+INSERT INTO categorie VALUES(17, 'Vêtements');
+INSERT INTO categorie VALUES(18, 'Ameublement');
+INSERT INTO categorie VALUES(19, 'Electromenager');
+INSERT INTO categorie VALUES(20, 'Jardinage');
 
 INSERT INTO objet VALUES (1,'Pomme',12,5,1,'un lot de pommes','2015-10-05 04:05:06','2015-10-06 04:05:06',8,'jean@test.com','paul@test.com',NULL);
 INSERT INTO objet VALUES (2,'Poire',10,5,1,'une poire','2015-10-05 04:05:06','2015-10-06 04:05:06',8,'jean@test.com','paul@test.com',NULL);

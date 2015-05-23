@@ -16,7 +16,7 @@
   $connect = pg_connect("dbname=$db user=$user password=$pass")
    or die("Erreur de connexion");
   
-  // Variables des diffÃ©rents champs Ã  insÃ©rer dans la BDD
+  // Variables des différents champs à insérer dans la BDD
   $nomobj = $_POST['nomobj'];
   $catego = $_POST['catego'];
   $montench = $_POST['montench'];
@@ -51,9 +51,8 @@
           now(),
           now() + interval '$duree days',
           '$idCategorie',
-          '$mail',
-          '',
-          ''
+          '$mail'
+          
         );";                      
          
          
