@@ -20,7 +20,7 @@ CREATE TABLE Utilisateur(
 	dateInscription	  Timestamp NOT NULL ,
 	--nbObjVendu	  Int DEFAULT 0,  Pas nécessaire, en croisant Objet.mailvendeur et mailUtilisateur 
 	--nbObjAch	  Int DEFAULT 0,  idem
-        PRIMARY KEY (mailUtilisateur ) ,
+        PRIMARY KEY (mailUtilisateur ) 
 	--CHECK (nbObjVendu >= 0) ,
 	--CHECK (nbObjAch >= 0)
 );
@@ -45,7 +45,7 @@ CREATE TABLE Objet(
         mailAcheteur      Varchar (128) NOT NULL ,
 	datePaiement	  Timestamp ,
         PRIMARY KEY (IdObjet ) ,
-	CHECK (prix > 0) ,
+	CHECK (prixInit > 0) ,
 	CHECK (pasobjet > 0.5) ,
 	CHECK (dateDebutVente < dateLimiteVente)
 );
