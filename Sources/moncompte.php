@@ -84,7 +84,6 @@
 			</div>
 		</form>
 	</div>
->>>>>>> Modifs
 
 <?php
 	//require 'headfoot.php';
