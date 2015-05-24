@@ -1,5 +1,6 @@
 <?php
 	require 'head_foot.php';
+	require 'bdd.php';
 	headerHTML();
 	session_start();
 
@@ -16,6 +17,7 @@
 		$connect = pg_connect("dbname=$db user=$user password=$pass");	//connexion à la base de données
 		$donnees = pg_exec($connect,"SELECT * FROM utilisateur");	//récupération des informations de l'utilisateur
 		$var = 0;
+		$ventesachats = getnbvente($login);
 		while ($row = pg_fetch_row($donnees)){
 			if ( $row[0]==$login){
 				$var = 1;
@@ -27,8 +29,8 @@
 				$_SESSION['telephone'] = $row[6];
 				$_SESSION['datenaissanceuser'] = $row[7];
 				$_SESSION['dateinscription'] = $row[8];
-				$_SESSION['nbobjvendu'] = $row[9];
-				$_SESSION['nbobjach'] = $row[10];
+				$_SESSION['nbobjvendu'] = $ventesachats['nbachats'];
+				$_SESSION['nbobjach'] = $ventesachats['nbventes'];
 			}
 		}
 	$login = $_SESSION['login'];

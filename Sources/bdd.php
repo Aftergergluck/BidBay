@@ -24,6 +24,20 @@
 	//function derniersobjets(){
 
 	//}
+	function getnbvente($mailuser){
+	
+		$achats = "SELECT COUNT (*) FROM objet WHERE mailvendeur='$mailuser'; ";
+		$ventes = "SELECT COUNT (*) FROM objet WHERE mailacheteur='$mailuser'; ";
+		$rstventes = requeteBDD($ventes);
+		$rstachats = requeteBDD($achats);
+		$rowA = pg_fetch_array($rstachats);
+		$rowV = pg_fetch_array($rstventes);
+		$array = array('nbventes' => $rowV[0] , 'nbachats' => $rowA[0] );
+		return $array;
+
+	}
+
+
 
 
 
