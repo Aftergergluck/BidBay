@@ -5,9 +5,12 @@
 	headerHTML();
 ?>
 
+<!-- Nécessaire pour Javascript -->
 <link href="javascriptv2/jquery-ui.css" rel="stylesheet">
 <script src="javascriptv2/external/jquery/jquery.js"></script>
 <script src="javascriptv2/jquery-ui.js"></script>
+
+
 
 
 <h1 class="Tpage">Bienvenu sur BidBay ! </h1>
@@ -46,7 +49,7 @@
   <div class="scroll-pane2 ui-widget ui-widget-header ui-corner-all">
     <div class="scroll-content2">
       <?php
-          $lastobjet = getlastidobjet();
+          $lastobjet = getlastvente();
 
           foreach ($lastobjet as $id) {
             afficherobjet($id);
@@ -65,19 +68,17 @@
   <h2 class="Tdesc">Vendeurs a la une : </h2>
   <div class="scroll-pane3 ui-widget ui-widget-header ui-corner-all">
     <div class="scroll-content3">
-      <div class="scroll-content-item">
-        <h3 > Super ballon de 1998</h3>
-        <img class="image" src="soccer-ball.png">
-        <p>Super ballon de foot !</p>
-      </div>
-      <div class="scroll-content-item">
-        <h3 > Super ballon de 1998 </h3>
-        <img class="image" src="soccer-ball.png">
-      </div>
-      <div class="scroll-content-item">
-        <h3 > Super ballon de 1998 </h3>
-        <img class="image" src="soccer-ball.png"> 
-     </div>
+        <?php
+          $vendeurune = getbestvendeur();
+
+          foreach ($vendeurune as $id) {
+          afficheruser($id);
+
+          }
+        ?>
+
+
+
     </div>
   </div>
   <div class="scroll-bar-wrap3 ui-widget-content ui-corner-bottom">
@@ -89,7 +90,7 @@
 </div>
   <style>
   .scroll-pane1 { overflow: auto; width: 100%; float:left; }
-  .scroll-content1 { width: 2400px; height: 300px; margin-left: 5px; float: left; }
+  .scroll-content1 { width: 2400px; height: 350px; margin-left: 5px; float: left; }
   .scroll-content-item { width: 350px; height: 275px; float: left; border-right-style: dashed;  float: left; padding: 10px; margin: 5px; font-size: 1em; line-height: 20px; text-align: center; }
   .scroll-content-item img { position: relative; left: 0px; width: 150px}
   .scroll-bar-wrap1 { clear: left; padding: 0 4px 0 2px; margin: 0 -1px -1px -1px; }
@@ -102,7 +103,7 @@
 
   <style>
   .scroll-pane2 { overflow: auto; width: 100%; float:left; }
-  .scroll-content2 { width: 2400px; height: 300px; margin-left: 5px; float: left; }
+  .scroll-content2 { width: 2400px; height: 350px; margin-left: 5px; float: left; }
   .scroll-bar-wrap2 { clear: left; padding: 0 4px 0 2px; margin: 0 -1px -1px -1px; }
   .scroll-bar-wrap2 .ui-slider { background: none; border:0; height: 1.5em; margin: 0 auto;  }
   .scroll-bar-wrap2 .ui-handle-helper-parent { position: relative; width: 100%; height: 100%; margin: 0 auto; }
@@ -112,7 +113,7 @@
 
   <style>
   .scroll-pane3 { overflow: auto; width: 100%; float:left; }
-  .scroll-content3 { width: 2400px; height: 300px; margin-left: 5px; float: left; }
+  .scroll-content3 { width: 2400px; height: 350px; margin-left: 5px; float: left; }
   .scroll-bar-wrap3 { clear: left; padding: 0 4px 0 2px; margin: 0 -1px -1px -1px; }
   .scroll-bar-wrap3 .ui-slider { background: none; border:0; height: 1.5em; margin: 0 auto;  }
   .scroll-bar-wrap3 .ui-handle-helper-parent { position: relative; width: 100%; height: 100%; margin: 0 auto; }

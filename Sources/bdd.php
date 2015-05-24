@@ -43,8 +43,8 @@
 		$result = requeteBDD($query);
 		$row = pg_fetch_array($result);	
 		$ventes = getnbvente($iduser);
-		$objet = array('iduser' => $iduser, 'nomuser' => $row[3], 'nbventes' => $ventes['nbventes'],
-		'nbachats' => $ventes['nbachats']  );
+		$objet = array('iduser' => $iduser, 'nomuser' => $row[3], 'nbventes' => $ventes['nbventes'], 'nbachats' => $ventes['nbachats']  );
+		return $objet;
 	}
 
 
@@ -82,7 +82,7 @@
 
 	function getbestvendeur(){
 
-		$query = "SELECT mailutilisateur FROM utilisateur WHERE  ORDER BY datelimitevente LIMIT 6 ;";
+		$query = "SELECT mailutilisateur FROM utilisateur LIMIT 6 ;";
 		$result = requeteBDD($query);
 		$array =  pg_fetch_all_columns($result, 0);
 		return $array;
@@ -110,6 +110,7 @@
         echo "<p>Nombre de ventes :  {$user['nbventes']} ! </p>   ";
         echo "<p>Nombre d'achats :  {$user['nbachats']} </p>";
         echo "</div>";
+       
 	}
 
 

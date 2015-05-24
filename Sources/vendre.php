@@ -105,3 +105,7 @@
 		</form>
 	</body>
 </html>
+
+<?php
+  footerHTML();
+?>
