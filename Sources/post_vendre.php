@@ -24,13 +24,14 @@
   $lot = $_POST['lot'];
   $desc = $_POST['desc'];
   $duree = $_POST['duree'];
+  $envente = "envente";
 
   // Recuperation nombre objets dans BDD
   // Affectation l'idobjet
   
   $query = "SELECT COUNT (*) FROM objet;" ;
   $result = pg_exec($connect, $query);
-  $row=pg_fetch_array($result);
+  $row = pg_fetch_array($result);
   $idobj = $row[0] + 1 ;
 
    $query1 = "SELECT idcategorie FROM categorie WHERE typecategorie='$catego'";
@@ -52,13 +53,13 @@
           now() + interval '$duree days',
           '$idCategorie',
           '$mail',
-          NULL,
-		  NULL          
+          '$envente'
+          
         );";                      
          
          
   pg_query($insert);      
-  echo "Votre objet à bien été ajouté.";     
+  echo "Requete effectuee";     
 
 
 
@@ -76,8 +77,8 @@
                 {
                         // Validation et stockage
                         // Sous le nom objeti  i étant l'idobjet
-                        move_uploaded_file($_FILES['image']['tmp_name'], 'uploads\photoobjet\objet' .$idobj);
-                        echo "L'envoi a bien été effectué !";
+                        move_uploaded_file($_FILES['image']['tmp_name'], 'uploads\photoobjet\objet'.$idobj.'.jpg');
+                        
                 }
         }
       }
