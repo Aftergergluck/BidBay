@@ -88,7 +88,7 @@ CREATE TABLE note(
         noteDelai         Float NOT NULL ,
         dateNoteUser      Timestamp NOT NULL ,  
         --mailUtilisateur   Varchar (32) NOT NULL ,   --En cherchant avec IdObjet --> Objet.mailacheteur ou .mailvendeur
-        --mailutilisateuracheteur Varchar (32) NOT NULL ,
+        --mailutilisateuracheteur Varchar (32),
         PRIMARY KEY (idObjet ) ,
 	CHECK (noteFiabilite > 0) ,
 	CHECK (noteComm > 0) ,
