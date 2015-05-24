@@ -1,6 +1,7 @@
 <?php
 	require 'head_foot.php';
-  
+  require 'bdd.php';
+
 	headerHTML();
 ?>
 
@@ -18,22 +19,20 @@
 
   <div class="scroll-pane1 ui-widget ui-widget-header ui-corner-all">
     <div class="scroll-content1">
-      <div class="scroll-content-item">
+      
         <?php
-        require 'bdd.php';
-         afficherobjet(1);
-        //getinfoobjet(1);
+          $lastobjet = getlastidobjet();
+
+          foreach ($lastobjet as $id) {
+            afficherobjet($id);
+          }
+          
+        
+
 
         ?>
-      </div>
-      <div class="scroll-content-item">
-        <h3 > Super ballon de 1998 </h3>
-        <img class="image" src="soccer-ball.png">
-      </div>
-      <div class="scroll-content-item">
-        <h3 > Super ballon de 1998 </h3>
-        <img class="image" src="soccer-ball.png">
-     </div>
+      
+      
     </div>
   </div>
   <div class="scroll-bar-wrap1 ui-widget-content ui-corner-bottom">
@@ -46,19 +45,13 @@
   <h2 class="Tdesc">Dernieres ventes : </h2>
   <div class="scroll-pane2 ui-widget ui-widget-header ui-corner-all">
     <div class="scroll-content2">
-      <div class="scroll-content-item">
-        <h3 > Super ballon de 1998 </h3>
-        <img class="image" src="soccer-ball.png">
-        <p>Super ballon de foot !</p>
-      </div>
-      <div class="scroll-content-item">
-        <h3 > Super ballon de 1998 </h3>
-        <img class="image" src="soccer-ball.png">
-      </div>
-      <div class="scroll-content-item">
-        <h3 > Super ballon de 1998 </h3>
-        <img class="image" src="soccer-ball.png">
-     </div>
+      <?php
+          $lastobjet = getlastidobjet();
+
+          foreach ($lastobjet as $id) {
+            afficherobjet($id);
+          }
+        ?>
     </div>
   </div>
   <div class="scroll-bar-wrap2 ui-widget-content ui-corner-bottom">
@@ -97,7 +90,7 @@
   <style>
   .scroll-pane1 { overflow: auto; width: 100%; float:left; }
   .scroll-content1 { width: 2400px; height: 300px; margin-left: 5px; float: left; }
-  .scroll-content-item { width: 300px; height: 275px; float: left; margin: 3px; font-size: 1em; line-height: 20px; text-align: center; }
+  .scroll-content-item { width: 350px; height: 275px; float: left; border-right-style: dashed;  float: left; padding: 10px; margin: 5px; font-size: 1em; line-height: 20px; text-align: center; }
   .scroll-content-item img { position: relative; left: 0px; width: 150px}
   .scroll-bar-wrap1 { clear: left; padding: 0 4px 0 2px; margin: 0 -1px -1px -1px; }
   .scroll-bar-wrap1 .ui-slider { background: none; border:0; height: 1.5em; margin: 0 auto;  }

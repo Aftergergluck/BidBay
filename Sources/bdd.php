@@ -32,33 +32,43 @@
 		//nomobj, prixinit, descriptionobj, mailvendeur
 		$result = requeteBDD($query);
 		$row = pg_fetch_array($result);	
+		$querynom = "SELECT prenom FROM utilisateur WHERE mailutilisateur = '$row[9]' ;";
+ 		$nom = requeteBDD($querynom);
+		$nomvendeur = pg_fetch_all_columns($nom);
 		$objet = array('idobjet' => $row[0], 'nomobj' =>$row[1], 'prixinit' => $row[2],
-		 'descriptionobj' => $row[5], 'mailvendeur' => $row[9] );
+		 'descriptionobj' => $row[5], 'mailvendeur' => $row[9], 'nomvendeur' => $nomvendeur[0] );
 		
 		return $objet;
 	}
-	/*
+	
 	function getlastidobjet(){
 		$query = "SELECT idobjet FROM objet ORDER BY idobjet DESC LIMIT 6 ;";
 		$result = requeteBDD($query);
-		$row = pg_fetch_array($result);
-		$objet[];
-		foreach ($row as $value ){
-			$objet[] = $value;
-		}
+		$array =  pg_fetch_all_columns($result, 0);
+		return $array;
 
-		return $objet;
+		
 	} 
-*/
+
+	function getlastvente(){
+		$query = "SELECT idobjet FROM objet WHERE datelimitevente < now() ORDER BY datelimitevente LIMIT 6 ;";
+		$result = requeteBDD($query);
+		$array =  pg_fetch_all_columns($result, 0);
+		return $array;
+
+		
+	}
+
 	function afficherobjet($idobjet){
 		$objet = getinfoobjet($idobjet);
-		$lienphoto = "uploads/photobjet/objet".$idobjet ;
-		echo "<h3 style='float :right'>{$objet['nomobj']} </h3>";
-		echo "<h3 style ='float: right'> <br /> <br /><br />{$objet['mailvendeur']} </h3>";
-        echo "<img class='image' style='position: relative' src='$lienphoto' >";
-        echo "<p>Mis en vente à :  {$objet['prixinit']} € </p>   ";
+		echo '<div class="scroll-content-item">';
+		echo "<h3  style ='float: right'> <a  href=\"objet.php?id=".$objet['idobjet']."\">{$objet['nomobj']}</a> </h3>";
+		echo "<h3  style ='clear: both; float: right'> <br /> <a href=\"compteother.php?mail=".$objet['mailvendeur']."\">{$objet['nomvendeur']}</a><br /></h3>";
+        echo "<img class=\"image\" style=\"position: relative\" src=\"uploads/photoobjet/objet\".$idobjet.\".jpg\" >"	;
+        echo "<p>Prix :  {$objet['prixinit']} € </p>   ";
         echo "<p>  {$objet['descriptionobj']} </p>";
-        "uploads/photoobjet/objet".$row[0].".jpg";
+        echo "</div>";
+        
 	}
 
 
