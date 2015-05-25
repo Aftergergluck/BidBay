@@ -107,11 +107,11 @@ ALTER TABLE note ADD CONSTRAINT FK_note_idObjet FOREIGN KEY (idObjet) REFERENCES
 -- Insertion des valeurs de test
 ---------------------------------
 
-INSERT INTO utilisateur VALUES ('jean@test.com','mdp1','Dupont','Jean','u','default','1 rue du test','0123456789','1/1/1990',CURRENT_TIMESTAMP,0,5);
-INSERT INTO utilisateur VALUES ('paul@test.com','mdp2','Dupont','Paul','u','default','2 rue du test','0987654321','1/1/1991',CURRENT_TIMESTAMP,1,4);
-INSERT INTO utilisateur VALUES ('pierre@test.com','mdp3','Dupond','Pierre','u','default','3 rue du test','1470258369','1/1/1992',CURRENT_TIMESTAMP,2,3);
-INSERT INTO utilisateur VALUES ('michel@test.fr','mdp','Duponthe','Michel','u','default','10 rue du test','0000000000','1/1/1993',CURRENT_TIMESTAMP,3,2);
-INSERT INTO utilisateur VALUES ('florian@test.fr','mdp4','Duponde','Florian','u','default','89 rue du ru','0248617930','1/1/1994',CURRENT_TIMESTAMP,4,1);
+INSERT INTO utilisateur VALUES ('jean@test.com','mdp1','Dupont','Jean','u','1 rue du test','0123456789','1/1/1990',CURRENT_TIMESTAMP);
+INSERT INTO utilisateur VALUES ('paul@test.com','mdp2','Dupont','Paul','u','2 rue du test','0987654321','1/1/1991',CURRENT_TIMESTAMP);
+INSERT INTO utilisateur VALUES ('pierre@test.com','mdp3','Dupond','Pierre','u','3 rue du test','1470258369','1/1/1992',CURRENT_TIMESTAMP);
+INSERT INTO utilisateur VALUES ('michel@test.fr','mdp','Duponthe','Michel','u','10 rue du test','0000000000','1/1/1993',CURRENT_TIMESTAMP);
+INSERT INTO utilisateur VALUES ('florian@test.fr','mdp4','Duponde','Florian','u','89 rue du ru','0248617930','1/1/1994',CURRENT_TIMESTAMP);
 
 INSERT INTO objet VALUES (1,1,'Pomme','un lot de pommes','default',0.5,10,'2015-10-05 04:05:06','2015-10-06 04:05:06',1,'jean@test.com','paul@test.com',NULL);
 INSERT INTO objet VALUES (2,1.5,'Poire','une poire','default',1,1,'2015-10-05 04:05:06','2015-10-06 04:05:06',1,'jean@test.com','paul@test.com',NULL);
