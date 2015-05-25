@@ -113,11 +113,20 @@ INSERT INTO utilisateur VALUES ('pierre@test.com','mdp3','Dupond','Pierre','u','
 INSERT INTO utilisateur VALUES ('michel@test.fr','mdp','Duponthe','Michel','u','10 rue du test','0000000000','1/1/1993',CURRENT_TIMESTAMP);
 INSERT INTO utilisateur VALUES ('florian@test.fr','mdp4','Duponde','Florian','u','89 rue du ru','0248617930','1/1/1994',CURRENT_TIMESTAMP);
 
-INSERT INTO objet VALUES (1,1,'Pomme','un lot de pommes','default',0.5,10,'2015-10-05 04:05:06','2015-10-06 04:05:06',1,'jean@test.com','paul@test.com',NULL);
-INSERT INTO objet VALUES (2,1.5,'Poire','une poire','default',1,1,'2015-10-05 04:05:06','2015-10-06 04:05:06',1,'jean@test.com','paul@test.com',NULL);
-INSERT INTO objet VALUES (3,2,'Cuillère','une cuillère','default',1.5,1,'2015-10-05 04:05:06','2015-10-06 04:05:06',1,,'jean@test.com','paul@test.com',NULL);
-INSERT INTO objet VALUES (4,2.5,'chaussette','une paire de chaussettes','default',5,1,'2015-10-05 04:05:06','2015-10-06 04:05:06',1,,'jean@test.com','paul@test.com',NULL);
-INSERT INTO objet VALUES (5,3,'gomme','une gomme','default',2.5,1,'2015-10-05 04:05:06','2015-10-06 04:05:06',1,,'jean@test.com','paul@test.com',NULL);
+INSERT INTO categorie VALUES (1, 'Electromenager');
+INSERT INTO categorie VALUES (2, 'Ameublement');
+INSERT INTO categorie VALUES (3, 'Exterieur');
+INSERT INTO categorie VALUES (4, 'Habits');
+INSERT INTO categorie VALUES (5, 'Claviers');
+INSERT INTO categorie VALUES (6, 'Souris');
+INSERT INTO categorie VALUES (7, 'Pieces');
+INSERT INTO categorie VALUES (8, 'Autres');
+
+INSERT INTO objet VALUES (1,'Pomme',12,5,1,'un lot de pommes','2015-10-05 04:05:06','2015-10-06 04:05:06',8,'jean@test.com','paul@test.com',NULL);
+INSERT INTO objet VALUES (2,'Poire',10,5,1,'une poire','2015-10-05 04:05:06','2015-10-06 04:05:06',8,'jean@test.com','paul@test.com',NULL);
+INSERT INTO objet VALUES (3,'Cuillère',1,1,5,'une cuillère','2015-10-05 04:05:06','2015-10-06 04:05:06',8,'jean@test.com','paul@test.com',NULL);
+INSERT INTO objet VALUES (4,'chaussette',3,5,3,'une paire de chaussettes','2015-10-05 04:05:06','2015-10-06 04:05:06',8,'jean@test.com','paul@test.com',NULL);
+INSERT INTO objet VALUES (5,'gomme',46,8,10,'une gomme','2015-10-05 04:05:06','2015-10-06 04:05:06',8,'jean@test.com','paul@test.com',NULL);
 
 
 ---------------------------------
