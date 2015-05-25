@@ -1,4 +1,4 @@
---------------------------------------------------------------
+﻿--------------------------------------------------------------
 --        Script MySQL.
 --------------------------------------------------------------
 
@@ -96,8 +96,8 @@ CREATE TABLE note(
 );
 
 ALTER TABLE Objet ADD CONSTRAINT FK_Objet_idCategorie FOREIGN KEY (idCategorie) REFERENCES Categorie(idCategorie);
-ALTER TABLE Objet ADD CONSTRAINT FK_Objet_mailUtilisateur FOREIGN KEY (mailUtilisateur) REFERENCES Utilisateur(mailUtilisateur);
-ALTER TABLE Objet ADD CONSTRAINT FK_Objet_mailutilisateuracheteur FOREIGN KEY (mailutilisateuracheteur) REFERENCES Utilisateur(mailUtilisateur);
+ALTER TABLE Objet ADD CONSTRAINT FK_Objet_mailVendeur FOREIGN KEY (mailVendeur) REFERENCES Utilisateur(mailUtilisateur);
+ALTER TABLE Objet ADD CONSTRAINT FK_Objet_mailacheteur FOREIGN KEY (mailacheteur) REFERENCES Utilisateur(mailUtilisateur);
 ALTER TABLE encherir ADD CONSTRAINT FK_encherir_mailUtilisateur FOREIGN KEY (mailUtilisateur) REFERENCES Utilisateur(mailUtilisateur);
 ALTER TABLE encherir ADD CONSTRAINT FK_encherir_idObjet FOREIGN KEY (idObjet) REFERENCES Objet(idObjet);
 ALTER TABLE note ADD CONSTRAINT FK_note_idObjet FOREIGN KEY (idObjet) REFERENCES Objet(idObjet);
