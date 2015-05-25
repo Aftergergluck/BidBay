@@ -19,7 +19,7 @@ function is_valide_date($date, $sep='/')
 	return checkdate($month, $day, $year);
 }
 if(is_valide_date($date)) // Affiche "Ok"
-	echo 'Ok';
+	echo 'Date valide';
 else
-	echo 'non !!!';
+	echo 'Date invalide';
 ?>
