@@ -2,16 +2,10 @@
 	require 'head_foot.php';
 	headerHTML();
 	session_start();
+	$login = $_SESSION['login'];
 
 ?>
 <?php
-		if(isset($_SESSION) && (!isset($_SESSION['login']))){  //Déconnecté
-			echo "ok";
-			header('Location : connexion.php');
-		}
-		else{
-			echo "pas ok";
-			$login = $_SESSION['login'];
 		$db = "postgres";
 		$user = "postgres";
 		$pass = "postgres";
@@ -45,7 +39,6 @@
 	$dateinscription = $_SESSION['dateinscription'];
 	$nbobjvendu = $_SESSION['nbobjvendu'];
 	$nbobjach = $_SESSION['nbobjach'];
-		}
 ?>
 <h1 class="Tpage">Mon Compte</h1>
 	<form action="post_photo.php" method="post" enctype="multipart/form-data">
@@ -85,17 +78,21 @@
 				<input type="submit" class="bouton_inscr" value="Modifier"></p>
 			</div>
 		</form>
-		<form action="form_coordonnees.php" method="post" enctype="multipart/form-data">
+		<form action="post_coordonnees.php" method="post" enctype="multipart/form-data">
 			<h2><b>Coordonnées</b></h2>
 				<?php
 					echo "<br />\n";
-					echo "Votre Adresse : $adresseuser";
+					echo "Modifiez votre adresse qui est actuellement : $adresseuser";
 					echo "<br />\n";
-					echo "Votre Telephone : +33$telephone";
+					echo "<input type=\"adresse\" name=\"adresse\">";
+					echo "<br />\n";
+					echo "Modifiez votre telephone qui est actuellement : +33$telephone";
+					echo "<br />\n";
+					echo "<input type=\"telephone\" name=\"telephone\">";
 					echo "<br />\n";
 				?>
 			<div class="center">
-				<input type="submit" class="bouton_inscr" value="Modifier"></p>
+				<input type="submit" class="bouton_co" value="Valider"></p>
 			</div>
 			<h2><b>Statistiques sur BidBay</b></h2>
 				<?php
@@ -107,7 +104,7 @@
 				?>
 		</form>
 	</div>
-</form>
+
 <?php
 	//require 'headfoot.php';
 	footerHTML();

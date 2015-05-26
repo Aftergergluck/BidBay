@@ -2,16 +2,13 @@
 	require 'head_foot.php';
 	headerHTML();
 	session_start();
+	$login = $_SESSION['login'];
 
 ?>
 <?php
-		if(isset($_SESSION) && (!isset($_SESSION['login']))){  //Déconnecté
-			echo "ok";
-			header('Location : connexion.php');
-		}
-		else{
-			echo "pas ok";
-			$login = $_SESSION['login'];
+	$error = isset($_GET['error']) ? $_GET['error'] : '';
+?>
+<?php
 		$db = "postgres";
 		$user = "postgres";
 		$pass = "postgres";
@@ -45,7 +42,6 @@
 	$dateinscription = $_SESSION['dateinscription'];
 	$nbobjvendu = $_SESSION['nbobjvendu'];
 	$nbobjach = $_SESSION['nbobjach'];
-		}
 ?>
 <h1 class="Tpage">Mon Compte</h1>
 	<form action="post_photo.php" method="post" enctype="multipart/form-data">
@@ -70,19 +66,29 @@
 				<input type="submit" class="bouton_inscr" value="Modifier"></p>
 			</div>
 		</form>
-		<form action="form_infocompte.php" method="post" enctype="multipart/form-data">
+		<form action="post_infocompte.php" method="post" enctype="multipart/form-data">
 			<h2><b>Infomations du compte</b></h2>
 				<?php
 					echo "<br />\n";
-					echo "Votre Mail : $login";
+					echo "Votre mail est : $login , il n'est pas modifiable";
 					echo "<br />\n";
-					echo "Votre Mot de passe : $passwd";
+					switch ($error){
+						case 1:
+							echo "<B class=\"error\">merci de saisir deux fois le même mot de passe</B>";
+							break;
+					}
 					echo "<br />\n";
-					echo "Votre Date d'inscription : $dateinscription";
+					echo "Modifiez votre mot de passe :";
+					echo "<br />\n";
+					echo "<input type=\"password\" name=\"passwd1\">";
+					echo "<br />\n";
+					echo "Confirmez votre nouveau mot de passe : ";
+					echo "<br />\n";
+					echo "<input type=\"password\" name=\"passwd2\">";
 					echo "<br />\n";
 				?>
 			<div class="center">
-				<input type="submit" class="bouton_inscr" value="Modifier"></p>
+				<input type="submit" class="bouton_co" value="Valider"></p>
 			</div>
 		</form>
 		<form action="form_coordonnees.php" method="post" enctype="multipart/form-data">
@@ -92,6 +98,8 @@
 					echo "Votre Adresse : $adresseuser";
 					echo "<br />\n";
 					echo "Votre Telephone : +33$telephone";
+					echo "<br />\n";
+					echo "Votre Date d'inscription : $dateinscription";
 					echo "<br />\n";
 				?>
 			<div class="center">
@@ -107,7 +115,7 @@
 				?>
 		</form>
 	</div>
-</form>
+
 <?php
 	//require 'headfoot.php';
 	footerHTML();
