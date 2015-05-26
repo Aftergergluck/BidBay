@@ -13,15 +13,89 @@
 	
 	
 	<div class="gauche2_3">
-		<div class="center"><h2 class="Tdesc">Commencez à utiliser BidBay</h2></div><br><br>
-	    <form id="inscr" action="post_inscription.php" method="post" enctype="multipart/form-data">
+		<div class="center"><h2 class="Tdesc">Commencez à utiliser BidBay</h2></div><br>
+		<form id="inscr" action="post_inscription.php" method="post" onsubmit="return validation(this)">
+		<script type="text/javascript">
+		/*function is_valide_date($date, $sep='/')
+		{
+			if(!list($day, $month, $year) = explode($sep, $date))
+				return false;
+			if($day > 31 OR $day < 1 OR $month > 12 OR $month < 1 OR $year > 32767 OR $year < 1)
+				return false;
+			return checkdate($month, $day, $year);
+		}*/
+			function validation(f) {
+				if (f.prenom.value == '' || f.nom.value == '' || f.mail.value == '' || f.jour.value == '' || f.mois.value == '' || f.annee.value == '' || f.pass1.value == '' || f.pass2.value == '') {
+					alert('Tous les champs ne sont pas remplis');
+					return false;
+				}
+				else if (f.pass1.value != f.pass2.value) {
+					alert('Les mots de passe ne sont pas identique');
+					f.pass1.focus();
+					return false;
+				}
+				else if (f.pass1.value == f.pass2.value || f.prenom.value != '' || f.nom.value != '' || f.mail.value != '' || f.jour.value != '' || f.mois.value != '' || f.annee.value != '') {
+					var j=(f.jour.value);
+					var m=(f.mois.value);
+					var a=(f.annee.value);
+					if ( ((isNaN(j))||(j<1)||(j>31))) {
+						alert("Le jour n'est pas correct.");
+						return false;
+					}
+					else if ( ((isNaN(m))||(m<1)||(m>12))) {
+						alert("Le mois n'est pas correct.");
+						return false;
+					}
+					else if ( ((isNaN(a))||(a<1850)||(a>1997))) {
+						if (a<1850){
+							alert("A moins que vous soyez immortel, votre année de naissance n'est pas correcte."); 
+							return false;
+						}
+						else if (a>1997){
+							alert("Vous avez moins de 18 ans, vous ne pouvez pas vous inscrire."); 
+							return false;
+						}
+						else{
+							alert("L'année n'est pas correcte."); 
+							return false;
+						}
+					}
+					else{
+						var d2=new Date(a,m-1,j);
+						j2=d2.getDate();
+						m2=d2.getMonth()+1;
+						a2=d2.getFullYear();
+						if (a2<=100) {
+							a2=1900+a2
+						}
+						if ( (j!=j2)||(m!=m2)||(a!=a2) ) {
+							alert("La date "+d+" n'existe pas !");
+							return false;
+						}
+						else
+							return true;
+					}
+				}
+				else {
+					alert('autre erreur');
+					return false;
+				}
+			}
+		</script>
 		<div class="gauche">
-		    <p>Prénom</p>
-		    <input type="text" name="prenom">
 			<?php
 				switch ($error){
 				case 1:
-					echo "<B>merci de saisir votre date de naissance</B>";
+					echo "<p class=\"error\">Vous avez oublié de remplir un champ</p>";
+					break;
+				}
+			?><br>
+			<p>Prénom</p>
+		    <input type="text" name="prenom">
+			<?php
+				switch ($error){
+				case 2:
+					echo "<p class=\"error\">Votre date de naissance est invalide</p>";
 					break;
 				}
 			?>
@@ -69,8 +143,15 @@
 		<div class="droite">
 		    <p>Nom</p>
 		    <input type="text" name="nom">
+			<?php
+				switch ($error){
+				case 3:
+					echo "<p class=\"error\">Un compte existe déjà avec ce mail</p>";
+					break;
+				}
+			?>
 			<p>Adresse e-mail</p>
-		    <input type="mail" name="mail">
+		    <input type="text" name="mail">
 		    <div class="center">
 			<p><br>En cliquant sur Soumettre, je reconnais que : <br>
 			<ul>
@@ -89,6 +170,5 @@
 	</div>
 
 <?php
-	//require 'headfoot.php';
 	footerHTML();
 ?>
