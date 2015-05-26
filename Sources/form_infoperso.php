@@ -2,16 +2,11 @@
 	require 'head_foot.php';
 	headerHTML();
 	session_start();
+	$login = $_SESSION['login'];
 
 ?>
+
 <?php
-		if(isset($_SESSION) && (!isset($_SESSION['login']))){  //Déconnecté
-			echo "ok";
-			header('Location : connexion.php');
-		}
-		else{
-			echo "pas ok";
-			$login = $_SESSION['login'];
 		$db = "postgres";
 		$user = "postgres";
 		$pass = "postgres";
@@ -45,7 +40,6 @@
 	$dateinscription = $_SESSION['dateinscription'];
 	$nbobjvendu = $_SESSION['nbobjvendu'];
 	$nbobjach = $_SESSION['nbobjach'];
-		}
 ?>
 <h1 class="Tpage">Mon Compte</h1>
 	<form action="post_photo.php" method="post" enctype="multipart/form-data">
@@ -55,19 +49,23 @@
 		</div>
 	</form>
 	<div class="gauche2_3">
-		<form action="form_infoperso.php" method="post" enctype="multipart/form-data">
+		<form action="post_infoperso.php" method="post" enctype="multipart/form-data">
 			<h2><b>Infomations personnelles</b></h2>
-				<?php
-					echo "<br />\n";
-					echo "Votre Nom : $nom";
-					echo "<br />\n";
-					echo "Votre Prénom : $prenom";
-					echo "<br />\n";
-					echo "Votre date de naissance : $datenaissanceuser";
-					echo "<br />\n";
-				?>
+					<br />
+					<p>Modifiez votre Nom</p>
+					<input type="nom1" name="nom1">
+					<br />
+					<p>Modifiez votre Prénom</p>
+					<input type="prenom1" name="prenom1">
+					<br />
+					<?php
+						echo "<br />\n";
+						echo "Votre date de naissance ne peut pas être modifiée : $datenaissanceuser";
+						echo "<br />\n";
+					?>
+					<br />
 			<div class="center">
-				<input type="submit" class="bouton_inscr" value="Modifier"></p>
+				<input type="submit" class="bouton_co" value="Valider"></p>
 			</div>
 		</form>
 		<form action="form_infocompte.php" method="post" enctype="multipart/form-data">
@@ -107,7 +105,7 @@
 				?>
 		</form>
 	</div>
-</form>
+
 <?php
 	//require 'headfoot.php';
 	footerHTML();

@@ -14,7 +14,7 @@
       <!-- Formulaire d'ajout d'objet -->
   	<form method="POST" action="post_vendre.php" id="ajoutobj" enctype="multipart/form-data">
 			<fieldset>
-        <div class="pageobj" >
+        <div class="pageobj" style="text-align: center" >
 				<h2 class="Tdesc"> Ajouter un objet en ligne <br><br> </h2>
 			 	Nom de cet objet : <br><input type="text" name="nomobj" class="nomobj" value="<?php if(isset($_POST['nomobj'])) echo $_POST['nomobj']; ?>" required  >
         <br><br>

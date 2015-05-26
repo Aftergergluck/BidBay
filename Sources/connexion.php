@@ -31,7 +31,6 @@
 		<input type="submit" class="bouton_co" value="Connexion">
 		</div>
 		</form>
-
 		<div class="droite">
 		<h3>Vous êtes nouveau sur BidBay?</h3>
 		Commencer dès maintenant. C'est simple et rapide!
