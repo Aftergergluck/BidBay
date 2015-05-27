@@ -22,7 +22,7 @@
 			echo "<a class=\"deco\" href=\"deconnexion.php\">Déconnexion</a>";
 			echo "<p class=\"mail\">Bienvenue sur BidBay : $login </p>";
 		}
-		echo "<p class=\"rech\"><a class=\"bouton_rech\" href=\"recherche.php\"><img class=\"img_rech\" src=\"images/trouver-recherche.png\" alt=\"rech\"></a>Recherche : <input type=\"text\" name=\"recherche\" placeholder=\"Votre recherche...\"></p></div>";
+		echo "<form action=\"recherche.php\" method=\"post\" enctype=\"multipart/form-data\"><p class=\"rech\"></a>Recherche : <input type=\"text\" name=\"recherche\" placeholder=\"Votre recherche...\">  <input class=\"bouton_rech\" type=\"submit\" name=\"submit\" value=\"\" style=\"background-image:url(images/trouver-recherche.png)\"  /></p></div></form>";
 		echo "<nav style=\"text-align:center\">";
 		echo "<a href=\"accueil.php\">Accueil</a>";
 		echo "<a href=\"categories.php\">Catégories</a>";
