@@ -24,7 +24,6 @@
   $lot = $_POST['lot'];
   $desc = $_POST['desc'];
   $duree = $_POST['duree'];
-  $envente = "envente";
 
   // Recuperation nombre objets dans BDD
   // Affectation l'idobjet
@@ -53,8 +52,8 @@
           now() + interval '$duree days',
           '$idCategorie',
           '$mail',
-          '$envente'
-          
+          NULL, 
+          NULL
         );";                      
          
          
@@ -77,13 +76,8 @@
                 {
                         // Validation et stockage
                         // Sous le nom objeti  i étant l'idobjet
-<<<<<<< HEAD
                         move_uploaded_file($_FILES['image']['tmp_name'], 'uploads\photoobjet\objet' .$idobj.".".$extension_upload);
                         echo "L'envoi a bien été effectué !";
-=======
-                        move_uploaded_file($_FILES['image']['tmp_name'], 'uploads\photoobjet\objet'.$idobj.'.jpg');
-                        
->>>>>>> 95a3cf891830ee42b8f68e0166619dd681c4727f
                 }
         }
       }
