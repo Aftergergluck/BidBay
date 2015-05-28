@@ -26,12 +26,14 @@
 		echo "<nav style=\"text-align:center\">";
 		echo "<a href=\"accueil.php\">Accueil</a>";
 		echo "<a href=\"categories.php\">Catégories</a>";
-		echo "<a href=\"vendre.php\">Vendre</a>";
 		if(isset($_SESSION) && (!isset($_SESSION['login']) || ($_SESSION['login']=="Deco") || ($_SESSION['login']=="erreur") || ($_SESSION['login']=="manque"))) //Déconnecté
 		{
+			
+			echo "<a href=\"connexion.php\">Vendre</a>";
 			echo "<a href=\"connexion.php\">Mon Compte</a>";
 		}
 		else{
+			echo "<a href=\"vendre.php\">Vendre</a>";
 			echo "<a href=\"moncompte.php\">Mon Compte</a>";
 		}
 		echo "<a href=\"faq.php\">FAQ/Aide</a>";
