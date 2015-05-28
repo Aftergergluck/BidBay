@@ -1,17 +1,13 @@
 <?php
 	require 'head_foot.php';
 	headerHTML();
-	session_start();
-	$loginother= $_SESSION['profilother'] = "charles.banquet@live.com";
-
+	$loginother = $_GET['mail'];
 ?>
 <?php
 	$param = isset($_GET['param']) ? $_GET['param'] : '';
 ?>
 <form action="objet.php" method="post" enctype="multipart/form-data">
 <?php
-		/*on a une variable param qui nous permet de récupérer le login d'un utilisateur et d'afficher son profil avec ses informations 
-		en se connectant à la base de données*/
 		switch ($param){
 				case 1:
 					$loginother = $_SESSION['mailutilisateurvendeur'];
@@ -20,16 +16,14 @@
 					$loginother = $_SESSION['mailutilisateuracheteur'];
 					break;
 			}
-		//connexion à la base de données
 		$db = "postgres";
 		$user = "postgres";
 		$pass = "postgres";
 		$connect = pg_connect("dbname=$db user=$user password=$pass");
-		$donnees = pg_exec($connect,"SELECT * FROM utilisateur");
+		$donnees = pg_exec($connect,"SELECT * FROM utilisateur WHERE mailutilisateur ='".$loginother."'");
 		$var = 0;
 		while ($row = pg_fetch_row($donnees)){
 			if ( $row[0]==$loginother){
-				//récupération des informations de l'utilisateur
 				$var = 1;
 				$_SESSION['nom'] = $row[2];
 				$_SESSION['prenom'] = $row[3];
@@ -54,8 +48,6 @@
 	<?php
 		echo "<h1>Vous ètes sur le compte de : $loginother</h1>";
 	?>
-	<!--Une fois qu'on a récupérer les valeurs de l'utilisateur dans la base de données on stocke ces valeurs dans des variables et on affiche en php
-	ses informations qu'on ne peut pas modifier bien sur puisqu'on est pas sur sa page -->
 	<div class="gauche2_3">
 			<h2><b>Photo de profil</b></h2>
 			<img src="photo_profil.jpg"  width="150" height="150" border=3>
