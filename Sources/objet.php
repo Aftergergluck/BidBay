@@ -24,18 +24,6 @@
 		$mailutilisateur = $row[9];
 		$mailutilisateuracheteur = $row[10];
 		
-		$db = "postgres";
-		$user = "postgres";
-		$pass = "postgres";
-		$connect = pg_connect("dbname=$db user=$user password=$pass");
-		
-		$donneesvendeur = pg_exec($connect,"SELECT * FROM utilisateur");
-		while ($row = pg_fetch_row($donneesvendeur)){
-			if ( $row[0]==$mailutilisateur){
-				$_SESSION['nbobjvendu'] = $row[10];
-			}
-		}
-		$nbobjvendu = $_SESSION['nbobjvendu'];
 		
 
 ?>
@@ -57,7 +45,13 @@
 					?>
 	</div>
 	<div class ="gauche2_3">
-		<img src="Pomme.jpg"  width="150" height="150" border=3>
+	<?php
+	$lienimage = "uploads/photoobjet/objet".$row[0].".jpg";
+	if(!file_exists($lienimage)){
+		$lienimage="photo_objet_defaut.png";
+	}
+	echo "<img src=\"".$lienimage."\"  width=\"150\" height=\"150\" border=3>";
+	?>
 		<form action="acheter.php" method="post">
 		<div class="center">
 			<h2><b><u>Description de l'objet :</u></b></h2>
