@@ -16,19 +16,17 @@
 			if ( $row[2]==$nomobj){
 				$_SESSION['prix'] = $row[1];
 				$_SESSION['descriptionobj'] = $row[3];
-				$_SESSION['imageobj'] = $row[4];
-				$_SESSION['pasobj'] = $row[5];
-				$_SESSION['quantiteobj'] = $row[6];
-				$_SESSION['datedebutvente'] = $row[7];
-				$_SESSION['datefinvente'] = $row[8];
-				$_SESSION['idcategorie'] = $row[9];
-				$_SESSION['mailutilisateurvendeur'] = $row[10];
-				$_SESSION['mailutilisateuracheteur'] = $row[11];
+				$_SESSION['pasobj'] = $row[4];
+				$_SESSION['quantiteobj'] = $row[5];
+				$_SESSION['datedebutvente'] = $row[6];
+				$_SESSION['datefinvente'] = $row[7];
+				$_SESSION['idcategorie'] = $row[8];
+				$_SESSION['mailutilisateurvendeur'] = $row[9];
+				$_SESSION['mailutilisateuracheteur'] = $row[10];
 			}
 		}
 		$prix = $_SESSION['prix'];
 		$description = $_SESSION['descriptionobj'];
-		$imageobj = $_SESSION['imageobj'];
 		$pasobj = $_SESSION['pasobj'];
 		$quantiteobj = $_SESSION['quantiteobj'];
 		$datedebutvente = $_SESSION['datedebutvente'];

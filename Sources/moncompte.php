@@ -6,11 +6,9 @@
 ?>
 <?php
 		if(isset($_SESSION) && (!isset($_SESSION['login']))){  //Déconnecté
-			echo "ok";
 			header('Location : connexion.php');
 		}
 		else{
-			echo "pas ok";
 			$login = $_SESSION['login'];
 		$db = "postgres";
 		$user = "postgres";
@@ -25,20 +23,18 @@
 				$_SESSION['nom'] = $row[2];
 				$_SESSION['prenom'] = $row[3];
 				$_SESSION['typeuser'] = $row[4];
-				$_SESSION['imageuser'] = $row[5];
-				$_SESSION['adresseuser'] = $row[6];
-				$_SESSION['telephone'] = $row[7];
-				$_SESSION['datenaissanceuser'] = $row[8];
-				$_SESSION['dateinscription'] = $row[9];
-				$_SESSION['nbobjvendu'] = $row[10];
-				$_SESSION['nbobjach'] = $row[11];
+				$_SESSION['adresseuser'] = $row[5];
+				$_SESSION['telephone'] = $row[6];
+				$_SESSION['datenaissanceuser'] = $row[7];
+				$_SESSION['dateinscription'] = $row[8];
+				$_SESSION['nbobjvendu'] = $row[9];
+				$_SESSION['nbobjach'] = $row[10];
 			}
 		}
 	$login = $_SESSION['login'];
 	$passwd = $_SESSION['passwd'];
 	$nom = $_SESSION['nom'];
 	$prenom =$_SESSION['prenom'];
-	$imageuser = $_SESSION['imageuser'];
 	$adresseuser = $_SESSION['adresseuser'];
 	$telephone = $_SESSION['telephone'];
 	$datenaissanceuser = $_SESSION['datenaissanceuser'];
