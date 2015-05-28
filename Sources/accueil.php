@@ -11,81 +11,89 @@
 
 <h1 class="Tpage">Bienvenu sur BidBay ! </h1>
 
+<div class="pageaccueil">
 
 
-<h2 class="Tdesc">Derniers objets ajoutés : </h2>
+  <h2 class="Tdesc">Derniers objets ajoutés : </h2>
 
-<div class="scroll-pane1 ui-widget ui-widget-header ui-corner-all">
-  <div class="scroll-content1">
-    <div class="scroll-content-item">
-      <h3 > Super ballon de 1998 </h3>
-      <img class="image" src="soccer-ball.png">
-      <p> > Super ballon de 1998, de tres bonne qualite bla bla bla</p>
+  <div class="scroll-pane1 ui-widget ui-widget-header ui-corner-all">
+    <div class="scroll-content1">
+      <div class="scroll-content-item">
+        <?php
+        require 'bdd.php';
+         afficherobjet(1);
+        //getinfoobjet(1);
+
+        ?>
+      </div>
+      <div class="scroll-content-item">
+        <h3 > Super ballon de 1998 </h3>
+        <img class="image" src="soccer-ball.png">
+      </div>
+      <div class="scroll-content-item">
+        <h3 > Super ballon de 1998 </h3>
+        <img class="image" src="soccer-ball.png">
+     </div>
     </div>
-    <div class="scroll-content-item">
-      <h3 > Super ballon de 1998 </h3>
-      <img class="image" src="soccer-ball.png">
-    </div>
-    <div class="scroll-content-item">
-      <h3 > Super ballon de 1998 </h3>
-      <img class="image" src="soccer-ball.png">
-   </div>
   </div>
-</div>
-<div class="scroll-bar-wrap1 ui-widget-content ui-corner-bottom">
-  <div class="scroll-bar1"></div>
-</div>
-<br />  <br /> 
-
-<h2 class="Tdesc">Dernieres ventes : </h2>
-<div class="scroll-pane2 ui-widget ui-widget-header ui-corner-all">
-  <div class="scroll-content2">
-    <div class="scroll-content-item">
-      <h3 > Super ballon de 1998 </h3>
-      <img class="image" src="soccer-ball.png">
-      <p>Super ballon de foot !</p>
-    </div>
-    <div class="scroll-content-item">
-      <h3 > Super ballon de 1998 </h3>
-      <img class="image" src="soccer-ball.png">
-    </div>
-    <div class="scroll-content-item">
-      <h3 > Super ballon de 1998 </h3>
-      <img class="image" src="soccer-ball.png">
-   </div>
+  <div class="scroll-bar-wrap1 ui-widget-content ui-corner-bottom">
+    <div class="scroll-bar1"></div>
   </div>
-</div>
-<div class="scroll-bar-wrap2 ui-widget-content ui-corner-bottom">
-  <div class="scroll-bar2"></div>
-</div>
-<br />  <br />  
+  <br />  <br /> 
 
 
-<h2 class="Tdesc">Vendeurs a la une : </h2>
-<div class="scroll-pane3 ui-widget ui-widget-header ui-corner-all">
-  <div class="scroll-content3">
-    <div class="scroll-content-item">
-      <h3 > Super ballon de 1998</h3>
-      <img class="image" src="soccer-ball.png">
-      <p>Super ballon de foot !</p>
+
+  <h2 class="Tdesc">Dernieres ventes : </h2>
+  <div class="scroll-pane2 ui-widget ui-widget-header ui-corner-all">
+    <div class="scroll-content2">
+      <div class="scroll-content-item">
+        <h3 > Super ballon de 1998 </h3>
+        <img class="image" src="soccer-ball.png">
+        <p>Super ballon de foot !</p>
+      </div>
+      <div class="scroll-content-item">
+        <h3 > Super ballon de 1998 </h3>
+        <img class="image" src="soccer-ball.png">
+      </div>
+      <div class="scroll-content-item">
+        <h3 > Super ballon de 1998 </h3>
+        <img class="image" src="soccer-ball.png">
+     </div>
     </div>
-    <div class="scroll-content-item">
-      <h3 > Super ballon de 1998 </h3>
-      <img class="image" src="soccer-ball.png">
-    </div>
-    <div class="scroll-content-item">
-      <h3 > Super ballon de 1998 </h3>
-      <img class="image" src="soccer-ball.png"> 
-   </div>
   </div>
+  <div class="scroll-bar-wrap2 ui-widget-content ui-corner-bottom">
+    <div class="scroll-bar2"></div>
+  </div>
+  <br />  <br />  
+
+
+
+
+  <h2 class="Tdesc">Vendeurs a la une : </h2>
+  <div class="scroll-pane3 ui-widget ui-widget-header ui-corner-all">
+    <div class="scroll-content3">
+      <div class="scroll-content-item">
+        <h3 > Super ballon de 1998</h3>
+        <img class="image" src="soccer-ball.png">
+        <p>Super ballon de foot !</p>
+      </div>
+      <div class="scroll-content-item">
+        <h3 > Super ballon de 1998 </h3>
+        <img class="image" src="soccer-ball.png">
+      </div>
+      <div class="scroll-content-item">
+        <h3 > Super ballon de 1998 </h3>
+        <img class="image" src="soccer-ball.png"> 
+     </div>
+    </div>
+  </div>
+  <div class="scroll-bar-wrap3 ui-widget-content ui-corner-bottom">
+   <div class="scroll-bar3"></div>
+  </div>
+  <br />  <br /> 
+
+
 </div>
-<div class="scroll-bar-wrap3 ui-widget-content ui-corner-bottom">
- <div class="scroll-bar3"></div>
-</div>
-<br />  <br /> 
-
-
-
   <style>
   .scroll-pane1 { overflow: auto; width: 100%; float:left; }
   .scroll-content1 { width: 2400px; height: 300px; margin-left: 5px; float: left; }
