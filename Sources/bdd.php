@@ -78,7 +78,7 @@
 		echo '<div class="scroll-content-item">';
 		echo "<h3  style ='float: right'> <a  href=\"objet.php?id=".$objet['idobjet']."\">{$objet['nomobj']}</a> </h3>";
 		echo "<h3  style ='clear: both; float: right'> <br /> <a href=\"compteother.php?mail=".$objet['mailvendeur']."\">{$objet['nomvendeur']}</a><br /></h3>";
-        echo "<img class=\"image\" style=\"position: relative\" src=\"uploads/photoobjet/objet\".$idobjet.\".jpg\" >"	;
+        echo "<img class=\"image\" style=\"position: relative\" src=\"uploads/photoobjet/objet$idobjet.jpg\" >"	;
         echo "<p>Prix :  {$objet['prixinit']} € </p>   ";
         echo "<p>  {$objet['descriptionobj']} </p>";
         echo "</div>";
