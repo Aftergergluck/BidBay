@@ -45,13 +45,22 @@ function dateFormat($date)
 			if(strtolower(substr_count($row[1], $rec))){
 				$req_vendeur = pg_exec($connect, "SELECT * FROM Utilisateur WHERE mailutilisateur = '".$row[9]."'");
 				$vendeur = pg_fetch_row($req_vendeur);
-				echo "<table><tr><td rowspan=\"2\" align=\"center\">Fin le :<br>".$date."<td rowspan=\"2\"><a href=\"objet.php?id=".$row[0]."\"> <img src=\"pomme.jpg\" width=\"150px\" height=\"150px\"></a></td><td height =\"30\"><a href=\"objet.php?id=".$row[0]."\">".$row[1]."</a> Vendu par <a href=\"compteother.php?mail=".$row[9]."\">".$vendeur[3]." ".$vendeur[2]."</a></td></tr><tr><td align=\"left\" width=\"300px\">".$row[5]."</td><td rowspan=\"2\" align=\"center\" > Prix : ".$row[3]." € </td></tr></table>";
+				$lienimage = "uploads\photoobjet/objet".$row[0].".jpg";
+				$lienimage = "uploads/photoobjet/objet".$row[0].".jpg";
+				if(!file_exists($lienimage)){
+					$lienimage="photo_objet_defaut.png";
+				}
+				echo "<table><tr><td rowspan=\"2\" align=\"center\">Fin le :<br>".$date."<td rowspan=\"2\"><a href=\"objet.php?id=".$row[0]."\"> <img src=\"".$lienimage."\" width=\"150px\" height=\"150px\"></a></td><td height =\"30\"><a href=\"objet.php?id=".$row[0]."\">".$row[1]."</a> Vendu par <a href=\"compteother.php?mail=".$row[9]."\">".$vendeur[3]." ".$vendeur[2]."</a></td></tr><tr><td align=\"left\" width=\"300px\">".$row[5]."</td><td rowspan=\"2\" align=\"center\" > Prix : ".$row[2]." € </td></tr></table>";
 				$nbObj++;
 			}
 			elseif (strtolower(substr_count($row[5], $rec))){
 				$req_vendeur = pg_exec($connect, "SELECT * FROM Utilisateur WHERE mailutilisateur = '".$row[9]."'");
 				$vendeur = pg_fetch_row($req_vendeur);
-				echo "<table><tr><td rowspan=\"2\" align=\"center\">Fin le :<br>".$date."<td rowspan=\"2\"><a href=\"objet.php?id=".$row[0]."\"> <img src=\"pomme.jpg\" width=\"150px\" height=\"150px\"></a></td><td height =\"30\"><a href=\"objet.php?id=".$row[0]."\">".$row[1]."</a> Vendu par <a href=\"compteother.php?mail=".$row[9]."\">".$vendeur[3]." ".$vendeur[2]."</a></td></tr><tr><td align=\"left\" width=\"300px\">".$row[5]."</td><td rowspan=\"2\" align=\"center\" > Prix : ".$row[3]." € </td></tr></table>";
+				$lienimage = "uploads/photoobjet/objet".$row[0].".jpg";
+				if(!file_exists($lienimage)){
+					$lienimage="photo_objet_defaut.png";
+				}
+				echo "<table><tr><td rowspan=\"2\" align=\"center\">Fin le :<br>".$date."<td rowspan=\"2\"><a href=\"objet.php?id=".$row[0]."\"> <img src=\"".$lienimage."\" width=\"150px\" height=\"150px\"></a></td><td height =\"30\"><a href=\"objet.php?id=".$row[0]."\">".$row[1]."</a> Vendu par <a href=\"compteother.php?mail=".$row[9]."\">".$vendeur[3]." ".$vendeur[2]."</a></td></tr><tr><td align=\"left\" width=\"300px\">".$row[5]."</td><td rowspan=\"2\" align=\"center\" > Prix : ".$row[2]." € </td></tr></table>";
 				$nbObj++;
 			}
 			$i++;
