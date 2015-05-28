@@ -5,26 +5,15 @@
 ?>
 <?php
 
- 
-function dateDiff($date1, $date2){
-    $diff = abs($date1 - $date2); // abs pour avoir la valeur absolute, ainsi éviter d'avoir une différence négative
-    $retour = array();
- 
-    $tmp = $diff;
-    $retour['second'] = $tmp % 60;
- 
-    $tmp = floor( ($tmp - $retour['second']) /60 );
-    $retour['minute'] = $tmp % 60;
- 
-    $tmp = floor( ($tmp - $retour['minute'])/60 );
-    $retour['hour'] = $tmp % 24;
- 
-    $tmp = floor( ($tmp - $retour['hour'])  /24 );
-    $retour['day'] = $tmp;
- 
-    return $retour;
-}
 
+function dateFormat($date)
+{
+	$d = $date;
+	$d = explode('-', $d);
+	$chaine = $d[2] ." ".$d[1]." ".$d[0];
+	return $chaine;
+}
+ 
 	require 'bdd.php';
 	if($_POST['recherche'] == ""){
 		echo "<h1>Veuillez saisir ce que vous voulez rechercher...</h1>";
@@ -50,15 +39,14 @@ function dateDiff($date1, $date2){
 			if(i != 0) //Affichage d'un séparateur
 				echo " <hr width=\"50%\" color=\"black\" size=\"1\" align=\"center\"> ";
 			
-			$dateDiff = dateDiff(time(), $row[6]);
-			$date=$dateDiff['day']." j - ".$dateDiff['hour']." h - ".$dateDiff['minute']." m - ".$dateDiff['second']." s";	
-			
+				//Initialisation variable date
+				$date = dateFormat(substr($row[7],0, 10));
 			if(strtolower(substr_count($row[1], $rec))){
-				echo "<table><tr><td rowspan=\"2\" align=\"center\">".$date."<td rowspan=\"2\"> <img src=\"pomme.jpg\" width=\"150px\" height=\"150px\"></td><td height =\"30\">".$row[1]."</td></tr><tr><td align=\"center\">".$row[5]."</td></tr></table>";
+				echo "<table><tr><td rowspan=\"2\" align=\"center\">Fin le :<br>".$date."<td rowspan=\"2\"> <img src=\"pomme.jpg\" width=\"150px\" height=\"150px\"></td><td height =\"30\">".$row[1]." Vendu par</td></tr><tr><td align=\"left\" width=\"300px\">".$row[5]."</td><td rowspan=\"2\" align=\"center\" > Prix : ".$row[3]." € </td></tr></table>";
 				$nbObj++;
 			}
 			elseif (strtolower(substr_count($row[5], $rec))){
-				echo "<table><tr><td rowspan=\"2\" align=\"center\">".$date."<td rowspan=\"2\"> <img src=\"pomme.jpg\" width=\"150px\" height=\"150px\"></td><td height =\"30\">".$row[1]."</td></tr><tr><td align=\"center\">".$row[5]."</td></tr></table>";
+				echo "<table><tr><td rowspan=\"2\" align=\"center\">Fin le :<br>".$date."<td rowspan=\"2\"> <img src=\"pomme.jpg\" width=\"150px\" height=\"150px\"></td><td height =\"30\">".$row[1]." Vendu par</td></tr><tr><td align=\"left\" width=\"300px\">".$row[5]."</td><td rowspan=\"2\" align=\"center\" > Prix : ".$row[3]." €</td></tr></table>";
 				$nbObj++;
 			}
 			$i++;
