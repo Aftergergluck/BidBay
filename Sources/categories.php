@@ -44,7 +44,23 @@
 
 	 echo "<br> <br>";
 
+function fini($date1, $date2){
 
+	$date1 = explode('-', $date1);
+	$deux = explode(' ', $date2);
+	$date2 = explode('-', $deux[0]);
+
+	$fin = $date2[0].$date2[1].$date2[2];
+	$aj = $date1[0].$date1[1].$date1[2];
+
+	if ($aj > $fin) {
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+	
 
 if(isset($_POST['Make']))
 {
@@ -61,7 +77,7 @@ if(isset($_POST['Make']))
 		$nbObj = 0;
 		while($row = pg_fetch_row($donnees)){
 			
-			if($i != 0){ //Affichage d'un séparateur
+			if($i != 0 && !fini(date('Y-m-d'), $row[7])){ //Affichage d'un séparateur
 				echo " <hr width=\"50%\" color=\"black\" size=\"1\" align=\"center\"> ";
 			}
 
@@ -74,9 +90,11 @@ if(isset($_POST['Make']))
 			if(!file_exists($lienimage)){
 				$lienimage="photo_objet_defaut.png";
 			}
-			echo "<table><tr><td rowspan=\"2\" align=\"center\">Fin le :<br>".$date."<td rowspan=\"2\"><a href=\"objet.php?id=".$row[0]."\"> <img src=\"".$lienimage."\" width=\"150px\" height=\"150px\"></a></td><td height =\"30\"><a href=\"objet.php?id=".$row[0]."\">".$row[1]."</a> Vendu par <a href=\"compteother.php?mail=".$row[9]."\">".$vendeur[3]." ".$vendeur[2]."</a></td></tr><tr><td align=\"left\" width=\"300px\">".$row[5]."</td><td rowspan=\"2\" align=\"center\" > Prix : ".$row[2]." € </td></tr></table>";
-			$nbObj++;
-			$i++;
+			if(!fini(date('Y-m-d'), $row[7])){
+				echo "<table><tr><td rowspan=\"2\" align=\"center\">Fin le :<br>".$date."<td rowspan=\"2\"><a href=\"objet.php?id=".$row[0]."\"> <img src=\"".$lienimage."\" width=\"150px\" height=\"150px\"></a></td><td height =\"30\"><a href=\"objet.php?id=".$row[0]."\">".$row[1]."</a> Vendu par <a href=\"compteother.php?mail=".$row[9]."\">".$vendeur[3]." ".$vendeur[2]."</a></td></tr><tr><td align=\"left\" width=\"300px\">".$row[5]."</td><td rowspan=\"2\" align=\"center\" > Prix : ".$row[2]." € </td></tr></table>";
+				$nbObj++;
+				$i++;
+			}	
 		}
 		if($nbObj == 0){
 			echo "Aucun résultat trouvé...";

@@ -6,6 +6,25 @@
 ?>
 <?php
 
+function fini($date1, $date2){
+
+	$date1 = explode('-', $date1);
+	$deux = explode(' ', $date2);
+	$date2 = explode('-', $deux[0]);
+
+	$fin = $date2[0].$date2[1].$date2[2];
+	$aj = $date1[0].$date1[1].$date1[2];
+
+	if ($aj > $fin) {
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+	
+
+
 
 function dateFormat($date)
 {
@@ -37,12 +56,12 @@ function dateFormat($date)
 		$i = 0;
 		$nbObj = 0;
 		while($row = pg_fetch_row($resultObj)){
-			if($i != 0 && (strtolower(substr_count($row[5], $rec)) || strtolower(substr_count($row[5], $rec)))  ) //Affichage d'un séparateur
+			if($i != 0 && (strtolower(substr_count($row[5], $rec)) || strtolower(substr_count($row[5], $rec)))  && !fini(date('Y-m-d'), $row[7]) ) //Affichage d'un séparateur
 				echo " <hr width=\"50%\" color=\"black\" size=\"1\" align=\"center\"> ";
 				
 				//Initialisation variable date
 				$date = dateFormat(substr($row[7],0, 10));
-			if(strtolower(substr_count($row[1], $rec))){
+			if(strtolower(substr_count($row[1], $rec)) && !fini(date('Y-m-d'), $row[7])){
 				$req_vendeur = pg_exec($connect, "SELECT * FROM Utilisateur WHERE mailutilisateur = '".$row[9]."'");
 				$vendeur = pg_fetch_row($req_vendeur);
 				$lienimage = "uploads\photoobjet/objet".$row[0].".jpg";
@@ -53,7 +72,7 @@ function dateFormat($date)
 				echo "<table><tr><td rowspan=\"2\" align=\"center\">Fin le :<br>".$date."<td rowspan=\"2\"><a href=\"objet.php?id=".$row[0]."\"> <img src=\"".$lienimage."\" width=\"150px\" height=\"150px\"></a></td><td height =\"30\"><a href=\"objet.php?id=".$row[0]."\">".$row[1]."</a> Vendu par <a href=\"compteother.php?mail=".$row[9]."\">".$vendeur[3]." ".$vendeur[2]."</a></td></tr><tr><td align=\"left\" width=\"300px\">".$row[5]."</td><td rowspan=\"2\" align=\"center\" > Prix : ".$row[2]." € </td></tr></table>";
 				$nbObj++;
 			}
-			elseif (strtolower(substr_count($row[5], $rec))){
+			elseif (strtolower(substr_count($row[5], $rec)) && !fini(date('Y-m-d'), $row[7])){
 				$req_vendeur = pg_exec($connect, "SELECT * FROM Utilisateur WHERE mailutilisateur = '".$row[9]."'");
 				$vendeur = pg_fetch_row($req_vendeur);
 				$lienimage = "uploads/photoobjet/objet".$row[0].".jpg";
