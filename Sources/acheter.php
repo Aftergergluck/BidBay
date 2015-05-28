@@ -2,8 +2,9 @@
 	require 'head_foot.php';
 	headerHTML();
 	session_start();
+	$idobj = $_SESSION['idobj'];
 	$login = $_SESSION['login'];
-	$nomobj = "Pomme";
+	$nomobj = $_SESSION['nomobj'];
 	$prix = $_SESSION['prix'];
 	$pasobj = $_SESSION['pasobj'];
 	$mailutilisateuracheteur = $_SESSION['mailutilisateuracheteur'];
@@ -15,7 +16,7 @@
 
 <!--si l'utilisateur ne souhaite finalement pas miser il peut retourner à la page de l'objet-->
 <div class= "droite1_3">
-				<a class="Connexion" href="objet.php">Retour à la page de l'objet</a>
+				<a class="Connexion" href="objet.php?id=".$idobj>Retour à la page de l'objet</a>
 </div>
 <form action="post_acheter.php" method="post" enctype="multipart/form-data">
 <div class ="gauche2_3">
