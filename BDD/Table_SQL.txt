@@ -1,4 +1,4 @@
---------------------------------------------------------------
+﻿--------------------------------------------------------------
 --        Script MySQL.
 --------------------------------------------------------------
 
@@ -15,7 +15,7 @@ CREATE TABLE Utilisateur(
         typeUser          Varchar (16) NOT NULL ,  --User/Admin pas besoin de 32 CHAR
         --imageUser         Varchar (32) NOT NULL ,   Stockées en local, nom de l'image = mailUtilisateur 
         adresseUser       Varchar (254) NOT NULL ,  --Parce 32 CHAR pour une adresse c'est pas sympa  
-        telephone         Int NOT NULL ,
+        telephone         Int ,
         dateNaissanceUser Date NOT NULL ,
 	dateInscription	  Timestamp NOT NULL ,
 	--nbObjVendu	  Int DEFAULT 0,  Pas nécessaire, en croisant Objet.mailvendeur et mailUtilisateur 
