@@ -76,7 +76,7 @@
                 {
                         // Validation et stockage
                         // Sous le nom objeti  i étant l'idobjet
-                        move_uploaded_file($_FILES['image']['tmp_name'], 'uploads\photoobjet\objet' .$idobj);
+                        move_uploaded_file($_FILES['image']['tmp_name'], 'uploads\photoobjet\objet' .$idobj.".".$extension_upload);
                         echo "L'envoi a bien été effectué !";
                 }
         }
