@@ -117,7 +117,7 @@ a.bouton_inscr_head
 	margin-top:-60px;
 	margin-right:9%;
 }
-a.bouton_rech
+.bouton_rech
 {
 	float:right;
 	margin-right:-10%;
@@ -560,6 +560,8 @@ div.droite1_3 {
     box-shadow: 0px 1px 0px #838383;
 }
 .bouton_rech{
+	padding-top:3px;
+	padding-left:4px;
 	-moz-box-shadow:inset 0px 1px 4px -1px #8CC6D7;
 	-webkit-box-shadow:inset 0px 1px 4px -1px #8CC6D7;
 	box-shadow:inset 0px 1px 4px -1px #8CC6D7;
