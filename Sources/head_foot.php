@@ -26,7 +26,6 @@
 		echo "<nav style=\"text-align:center\">";
 		echo "<a href=\"accueil.php\">Accueil</a>";
 		echo "<a href=\"categories.php\">Catégories</a>";
-		echo "<a href=\"encheres.php\">Enchères</a>";
 		echo "<a href=\"vendre.php\">Vendre</a>";
 		if(isset($_SESSION) && (!isset($_SESSION['login']) || ($_SESSION['login']=="Deco") || ($_SESSION['login']=="erreur") || ($_SESSION['login']=="manque"))) //Déconnecté
 		{
