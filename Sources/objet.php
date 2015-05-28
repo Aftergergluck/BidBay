@@ -1,5 +1,6 @@
 <?php
 	require 'head_foot.php';
+	require 'bdd.php';
 	headerHTML();
 	session_start();
 	/*$login = $_SESSION['login'];
@@ -38,6 +39,11 @@
 		$idcategorie = $_SESSION['idcategorie'];
 		$mailutilisateur = $_SESSION['mailutilisateurvendeur'];
 		$mailutilisateuracheteur = $_SESSION['mailutilisateuracheteur'];
+		$ventesachats = getnbvente($mailutilisateur);
+		$_SESSION['nbobjvendu'] = $ventesachats['nbachats'];
+		$_SESSION['nbobjach'] = $ventesachats['nbventes'];
+		$nbobjvendu = $_SESSION['nbobjvendu'];
+		$nbobjach = $_SESSION['nbobjach'];
 		
 		
 
