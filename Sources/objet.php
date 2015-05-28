@@ -6,18 +6,20 @@
 	$nomobj = "Pomme";
 ?>
 <?php
+		/*on se connecte à la base de données*/
 		$db = "postgres";
 		$user = "postgres";
 		$pass = "postgres";
 		$connect = pg_connect("dbname=$db user=$user password=$pass");
+		/*on récupère colonne par colonne les informations de l'objet*/
 		$donnees = pg_exec($connect,"SELECT * FROM objet");
 		$var = 0;
 		while ($row = pg_fetch_row($donnees)){
-			if ( $row[2]==$nomobj){
-				$_SESSION['prix'] = $row[1];
-				$_SESSION['descriptionobj'] = $row[3];
-				$_SESSION['pasobj'] = $row[4];
-				$_SESSION['quantiteobj'] = $row[5];
+			if ( $row[1]==$nomobj){
+				$_SESSION['prix'] = $row[2];
+				$_SESSION['pasobj'] = $row[3];
+				$_SESSION['quantiteobj'] = $row[4];
+				$_SESSION['descriptionobj'] = $row[5];
 				$_SESSION['datedebutvente'] = $row[6];
 				$_SESSION['datefinvente'] = $row[7];
 				$_SESSION['idcategorie'] = $row[8];
@@ -25,10 +27,11 @@
 				$_SESSION['mailutilisateuracheteur'] = $row[10];
 			}
 		}
+		/*on affecte ces informations à des variable qui nous permettrons d'afficher les infos de l'objet*/
 		$prix = $_SESSION['prix'];
-		$description = $_SESSION['descriptionobj'];
 		$pasobj = $_SESSION['pasobj'];
 		$quantiteobj = $_SESSION['quantiteobj'];
+		$description = $_SESSION['descriptionobj'];
 		$datedebutvente = $_SESSION['datedebutvente'];
 		$datefinvente = $_SESSION['datefinvente'];
 		$idcategorie = $_SESSION['idcategorie'];
@@ -39,7 +42,7 @@
 		$user = "postgres";
 		$pass = "postgres";
 		$connect = pg_connect("dbname=$db user=$user password=$pass");
-		
+		/*on recupère dans la base de données le nom du vendeur et le nombre d'objet qu'il a vendu*/
 		$donneesvendeur = pg_exec($connect,"SELECT * FROM utilisateur");
 		while ($row = pg_fetch_row($donneesvendeur)){
 			if ( $row[0]==$mailutilisateur){
@@ -53,8 +56,10 @@
 <?php
 	echo "<h1 class=\"Tpage\">$nomobj</h1>";
 ?>
+	<!--on affiches les differentes informations de l'objet-->
 	<div class="droite1_3">
 				<h2><b>Information sur le vendeur :</b></h2>
+				<!--on affiches les informations du vendeurs et du dernier à avoir miser et on met un lien sur leur profil-->
 					<?php
 						echo "Vendeur : $mailutilisateur";
 						echo "<br />\n";
@@ -107,6 +112,7 @@
 					echo "<h1 class=\"error\">$prix €</h1>";
 					echo "<br />\n";
 				?>
+				<!--quand on a affiché les informations on peut si on le souhaite cliquer sur enchérir qui nous conduira vers une page où l'on va enchérir sur l'objet-->
 				<input type="submit" class="bouton_encherir" value="Enchérir"></p>
 	</div>
 		</form>

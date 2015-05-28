@@ -9,12 +9,12 @@
 			header('Location : connexion.php');
 		}
 		else{
-			$login = $_SESSION['login'];
+			$login = $_SESSION['login']; //on récupère l'identifiant avec lequel on s'est connecté
 		$db = "postgres";
 		$user = "postgres";
 		$pass = "postgres";
-		$connect = pg_connect("dbname=$db user=$user password=$pass");
-		$donnees = pg_exec($connect,"SELECT * FROM utilisateur");
+		$connect = pg_connect("dbname=$db user=$user password=$pass");	//connexion à la base de données
+		$donnees = pg_exec($connect,"SELECT * FROM utilisateur");	//récupération des informations de l'utilisateur
 		$var = 0;
 		while ($row = pg_fetch_row($donnees)){
 			if ( $row[0]==$login){
@@ -43,6 +43,8 @@
 	$nbobjach = $_SESSION['nbobjach'];
 		}
 ?>
+<!--on affiche les differentes parti de notre compte qui sont la photo les infos perso, les infos du compte 
+et les coordonnées, on insère du code php pour récupérer et afficher la valeur des variables qui contiennent les information  de l'utilisateur-->
 <h1 class="Tpage">Mon Compte</h1>
 	<form action="post_photo.php" method="post" enctype="multipart/form-data">
 		<div class ="droite1_3">
@@ -62,6 +64,7 @@
 					echo "Votre date de naissance : $datenaissanceuser";
 					echo "<br />\n";
 				?>
+				<!--on peut appyer sur un bouton modifier pour changer certaines de nos informations-->
 			<div class="center">
 				<input type="submit" class="bouton_inscr" value="Modifier"></p>
 			</div>

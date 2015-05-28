@@ -4,6 +4,7 @@
 ?>
 
 <h1 class="Tpage">Foire Aux Questions</h1>
+<!--on a mis plusieurs questions en htlm c'est une page fixe et sur cette page on peut voir les differentes questions que peut se poser un utilisateur-->
 	<h3><p>Voici la page d'FAQ/Aides</p></h3>
 		<b><p>Ici se trouve plusieurs questions, auquel nous répondons, que peut se poser un utilisateur lorsqu'il est sur BidBay</p></b>
 		<br></br>

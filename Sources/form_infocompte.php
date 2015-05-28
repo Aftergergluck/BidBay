@@ -9,6 +9,7 @@
 	$error = isset($_GET['error']) ? $_GET['error'] : '';
 ?>
 <?php
+		//connexion à la base de données
 		$db = "postgres";
 		$user = "postgres";
 		$pass = "postgres";
@@ -17,6 +18,7 @@
 		$var = 0;
 		while ($row = pg_fetch_row($donnees)){
 			if ( $row[0]==$login){
+				//récupération des informations de l'utilisateur
 				$var = 1;
 				$_SESSION['passwd'] = $row[1];
 				$_SESSION['nom'] = $row[2];
@@ -41,6 +43,8 @@
 	$nbobjvendu = $_SESSION['nbobjvendu'];
 	$nbobjach = $_SESSION['nbobjach'];
 ?>
+<!--on affiche les differentes parti de notre compte qui sont la photo les infos perso, les infos du compte 
+et les coordonnées, on insère du code php pour récupérer et afficher la valeur des variables qui contiennent les information  de l'utilisateur-->
 <h1 class="Tpage">Mon Compte</h1>
 	<form action="post_photo.php" method="post" enctype="multipart/form-data">
 		<div class ="droite1_3">
@@ -86,6 +90,7 @@
 					echo "<br />\n";
 				?>
 			<div class="center">
+			<!--on peut appyer sur un bouton modifier pour changer certaines de nos informations-->
 				<input type="submit" class="bouton_co" value="Valider"></p>
 			</div>
 		</form>
