@@ -38,12 +38,19 @@
 	}
 
 
+	function getinfouser($iduser){
+		$query = "SELECT * FROM utilisateur WHERE mailutilisateur = '$iduser'; ";
+		$result = requeteBDD($query);
+		$row = pg_fetch_array($result);	
+		$ventes = getnbvente($iduser);
+		$objet = array('iduser' => $iduser, 'nomuser' => $row[3], 'nbventes' => $ventes['nbventes'],
+		'nbachats' => $ventes['nbachats']  );
+	}
 
 
 
 	function getinfoobjet($idobjet){
 		$query = "SELECT * FROM objet WHERE idobjet = '$idobjet'; ";
-		//nomobj, prixinit, descriptionobj, mailvendeur
 		$result = requeteBDD($query);
 		$row = pg_fetch_array($result);	
 		$querynom = "SELECT prenom FROM utilisateur WHERE mailutilisateur = '$row[9]' ;";
@@ -73,16 +80,36 @@
 		
 	}
 
+	function getbestvendeur(){
+
+		$query = "SELECT mailutilisateur FROM utilisateur WHERE  ORDER BY datelimitevente LIMIT 6 ;";
+		$result = requeteBDD($query);
+		$array =  pg_fetch_all_columns($result, 0);
+		return $array;
+
+		
+	}
+
 	function afficherobjet($idobjet){
 		$objet = getinfoobjet($idobjet);
 		echo '<div class="scroll-content-item">';
 		echo "<h3  style ='float: right'> <a  href=\"objet.php?id=".$objet['idobjet']."\">{$objet['nomobj']}</a> </h3>";
 		echo "<h3  style ='clear: both; float: right'> <br /> <a href=\"compteother.php?mail=".$objet['mailvendeur']."\">{$objet['nomvendeur']}</a><br /></h3>";
-        echo "<img class=\"image\" style=\"position: relative\" src=\"uploads/photoobjet/objet$idobjet.jpg\" >"	;
+        echo "<img class=\"image\" style=\"position: relative\" src=\"uploads/photoobjet/objet\".$idobjet.\".jpg\" >"	;
         echo "<p>Prix :  {$objet['prixinit']} € </p>   ";
         echo "<p>  {$objet['descriptionobj']} </p>";
         echo "</div>";
         
+	}
+
+	function afficheruser($iduser){
+		$user = getinfouser($iduser);
+		echo '<div class="scroll-content-item">';
+		echo "<h3  style ='float: center'> <a  href=\"compteother.php?id=".$user['iduser']."\">{$user['nomuser']}</a> </h3>";
+        echo "<img class=\"image\" style=\"position: relative\" src=\"uploads/photoobjet/objet\".$idobjet.\".jpg\" >"	;
+        echo "<p>Nombre de ventes :  {$user['nbventes']} ! </p>   ";
+        echo "<p>Nombre d'achats :  {$user['nbachats']} </p>";
+        echo "</div>";
 	}
 
 

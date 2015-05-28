@@ -7,9 +7,7 @@
       <link href="javascriptv2/jquery-ui.css" rel="stylesheet">
       <script src="javascriptv2/external/jquery/jquery.js"></script>
       <script src="javascriptv2/jquery-ui.js"></script>
-      <script type="text/javascript"
-        src="http://jqueryui.com/ui/i18n/jquery.ui.datepicker-fr.js">
-      </script>
+      
       
       <!-- Formulaire d'ajout d'objet -->
   	<form method="POST" action="post_vendre.php" id="ajoutobj" enctype="multipart/form-data">
@@ -77,27 +75,6 @@
       </div>   
 
       
-      <?php
-      if (isset($_FILES['image']) AND $_FILES['image']['error'] == 0)
-      {
-        // Test de la taille du fichier < 3Mo
-        if ($_FILES['image']['size'] <= 3000000)
-        {
-                // Testons si l'extension est autorisée
-                $infosfichier = pathinfo($_FILES['image']['name']);
-                $extension_upload = $infosfichier['extension'];
-                $extensions_autorisees = array('jpg', 'jpeg', 'gif', 'png');
-                if (in_array($extension_upload, $extensions_autorisees))
-                {
-                        // On peut valider le fichier et le stocker définitivement
-                        move_uploaded_file($_FILES['image']['tmp_name'], 'uploads\photoobjet' .basename($_FILES['image']['name']));
-                        echo "L'envoi a bien été effectué !";
-                }
-        }
-      }
-
-      ?>
-
 
         
        <!--Code fonctions javascript  -->
@@ -108,8 +85,8 @@
           
 
            
-           //Element spinner, pas 5                                                           
-          $( ".spinner" ).spinner({
+           //Element spinner, min 1                                                           
+          $(".spinner").spinner({
              min: 1
           });
                               
