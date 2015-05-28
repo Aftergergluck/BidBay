@@ -37,7 +37,7 @@ function dateFormat($date)
 		$i = 0;
 		$nbObj = 0;
 		while($row = pg_fetch_row($resultObj)){
-			if(i != 0) //Affichage d'un séparateur
+			if($i != 0 && (strtolower(substr_count($row[5], $rec)) || strtolower(substr_count($row[5], $rec)))  ) //Affichage d'un séparateur
 				echo " <hr width=\"50%\" color=\"black\" size=\"1\" align=\"center\"> ";
 				
 				//Initialisation variable date
