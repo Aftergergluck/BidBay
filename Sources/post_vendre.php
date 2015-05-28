@@ -57,9 +57,8 @@
         );";                      
          
          
-  pg_query($insert); 
-  echo $idCategorie;  
-  echo "Requete effectuee";     
+  pg_query($insert);  
+  echo "Votre objet à bien été ajouté.";     
 
 
 
