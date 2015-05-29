@@ -87,9 +87,20 @@ if(isset($_POST['Make']))
 			$req_vendeur = pg_exec($connect, "SELECT * FROM Utilisateur WHERE mailutilisateur = '".$row[9]."'");
 			$vendeur = pg_fetch_row($req_vendeur);
 			$lienimage = "uploads/photoobjet/objet".$row[0].".jpg";
+			$lienimage2 = "uploads/photoobjet/objet".$row[0].".jpeg";
+			$lienimage3 = "uploads/photoobjet/objet".$row[0].".gif";
+			$lienimage4 = "uploads/photoobjet/objet".$row[0].".png";
 			if(!file_exists($lienimage)){
 				$lienimage="photo_objet_defaut.png";
 			}
+			if(file_exists($lienimage2)){
+				$lienimage=$lienimage2;
+			}else if(file_exists($lienimage3)){
+				$lienimage=$lienimage3;
+			}else if(file_exists($lienimage4)){
+				$lienimage=$lienimage4;
+			}
+				
 			if(!fini(date('Y-m-d'), $row[7])){
 				echo "<table><tr><td rowspan=\"2\" align=\"center\">Fin le :<br>".$date."<td rowspan=\"2\"><a href=\"objet.php?id=".$row[0]."\"> <img src=\"".$lienimage."\" width=\"150px\" height=\"150px\"></a></td><td height =\"30\"><a href=\"objet.php?id=".$row[0]."\">".$row[1]."</a> Vendu par <a href=\"compteother.php?mail=".$row[9]."\">".$vendeur[3]." ".$vendeur[2]."</a></td></tr><tr><td align=\"left\" width=\"300px\">".$row[5]."</td><td rowspan=\"2\" align=\"center\" > Prix : ".$row[2]." € </td></tr></table>";
 				$nbObj++;
