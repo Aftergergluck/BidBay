@@ -29,8 +29,8 @@
 				$_SESSION['telephone'] = $row[6];
 				$_SESSION['datenaissanceuser'] = $row[7];
 				$_SESSION['dateinscription'] = $row[8];
-				$_SESSION['nbobjvendu'] = $ventesachats['nbachats'];
-				$_SESSION['nbobjach'] = $ventesachats['nbventes'];
+				$_SESSION['nbobjvendu'] = $ventesachats['nbventes'];
+				$_SESSION['nbobjach'] = $ventesachats['nbachats'];
 			}
 		}
 	$login = $_SESSION['login'];

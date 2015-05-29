@@ -22,8 +22,8 @@
 	
 		$achats = "SELECT COUNT (*) FROM objet WHERE mailvendeur='$mailuser'; ";
 		$ventes = "SELECT COUNT (*) FROM objet WHERE mailacheteur='$mailuser'; ";
-		$rstventes = requeteBDD($ventes);
-		$rstachats = requeteBDD($achats);
+		$rstventes = requeteBDD($achats);
+		$rstachats = requeteBDD($ventes);
 		$rowA = pg_fetch_array($rstachats);
 		$rowV = pg_fetch_array($rstventes);
 		$array = array('nbventes' => $rowV[0] , 'nbachats' => $rowA[0] );
@@ -87,7 +87,7 @@
 		echo '<div class="scroll-content-item">';
 		echo "<h3  style ='float: center'> <a  href=\"compteother.php?id=".$user['iduser']."\">{$user['nomuser']}</a> </h3>";
         echo "<img class=\"image\" style=\"position: relative\" src=\"uploads/photoobjet/objet\".$idobjet.\".jpg\" >"	;
-        echo "<p>Nombre de ventes :  {$user['nbventes']} ! </p>   ";
+        echo "<p>Nombre de ventes :  {$user['nbventes']}  </p>   ";
         echo "<p>Nombre d'achats :  {$user['nbachats']} </p>";
         echo "</div>";
        
