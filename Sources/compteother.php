@@ -1,5 +1,6 @@
 <?php
 	require 'head_foot.php';
+	require 'bdd.php';
 	headerHTML();
 	$loginother = $_GET['mail'];
 ?>
@@ -50,7 +51,13 @@
 	?>
 	<div class="gauche2_3">
 			<h2><b>Photo de profil</b></h2>
-			<img src="photo_profil.jpg"  width="150" height="150" border=3>
+			<form action="post_photo.php" method="post" enctype="multipart/form-data">
+		<div class ="droite1_3">
+			<?php
+	$lienimage = "uploads/photouser/user".$row[0].".jpg";
+	if(!file_exists($lienimage)){
+		$lienimage="photo_profil.jpg";
+	}
 			<h2><b>Infomations personnelles</b></h2>
 				<?php
 					echo "<br />\n";

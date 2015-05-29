@@ -1,23 +1,18 @@
 <?php
 	require 'head_foot.php';
-	require 'bdd.php';
 	headerHTML();
 	session_start();
+	$login = $_SESSION['login'];
 
 ?>
+
 <?php
-		if(isset($_SESSION) && (!isset($_SESSION['login']))){  //Déconnecté
-			header('Location : connexion.php');
-		}
-		else{
-			$login = $_SESSION['login']; //on récupère l'identifiant avec lequel on s'est connecté
 		$db = "postgres";
 		$user = "postgres";
 		$pass = "postgres";
-		$connect = pg_connect("dbname=$db user=$user password=$pass");	//connexion à la base de données
-		$donnees = pg_exec($connect,"SELECT * FROM utilisateur");	//récupération des informations de l'utilisateur
+		$connect = pg_connect("dbname=$db user=$user password=$pass");
+		$donnees = pg_exec($connect,"SELECT * FROM utilisateur");
 		$var = 0;
-		$ventesachats = getnbvente($login);
 		while ($row = pg_fetch_row($donnees)){
 			if ( $row[0]==$login){
 				$var = 1;
@@ -29,8 +24,8 @@
 				$_SESSION['telephone'] = $row[6];
 				$_SESSION['datenaissanceuser'] = $row[7];
 				$_SESSION['dateinscription'] = $row[8];
-				$_SESSION['nbobjvendu'] = $ventesachats['nbachats'];
-				$_SESSION['nbobjach'] = $ventesachats['nbventes'];
+				$_SESSION['nbobjvendu'] = $row[9];
+				$_SESSION['nbobjach'] = $row[10];
 			}
 		}
 	$login = $_SESSION['login'];
@@ -43,14 +38,11 @@
 	$dateinscription = $_SESSION['dateinscription'];
 	$nbobjvendu = $_SESSION['nbobjvendu'];
 	$nbobjach = $_SESSION['nbobjach'];
-		}
 ?>
-<!--on affiche les differentes parti de notre compte qui sont la photo les infos perso, les infos du compte 
-et les coordonnées, on insère du code php pour récupérer et afficher la valeur des variables qui contiennent les information  de l'utilisateur-->
 <h1 class="Tpage">Mon Compte</h1>
 	<form action="post_photo.php" method="post" enctype="multipart/form-data">
 		<div class ="droite1_3">
-			<?php
+					<?php
 	$lienimage = "uploads/photouser/user".$row[0].".jpg";
 	if(!file_exists($lienimage)){
 		$lienimage="photo_profil.jpg";
@@ -61,7 +53,7 @@ et les coordonnées, on insère du code php pour récupérer et afficher la vale
 		</div>
 	</form>
 	<div class="gauche2_3">
-		<form action="form_infoperso.php" method="post" enctype="multipart/form-data">
+		<form action="post_infoperso.php" method="post" enctype="multipart/form-data">
 			<h2><b>Infomations personnelles</b></h2>
 				<?php
 					echo "<br />\n";
@@ -72,9 +64,8 @@ et les coordonnées, on insère du code php pour récupérer et afficher la vale
 					echo "Votre date de naissance : $datenaissanceuser";
 					echo "<br />\n";
 				?>
-				<!--on peut appyer sur un bouton modifier pour changer certaines de nos informations-->
 			<div class="center">
-				<input type="submit" class="bouton_inscr" value="Modifier"></p>
+				<input type="submit" class="bouton_co" value="Valider"></p>
 			</div>
 		</form>
 		<form action="form_infocompte.php" method="post" enctype="multipart/form-data">
@@ -114,7 +105,7 @@ et les coordonnées, on insère du code php pour récupérer et afficher la vale
 				?>
 		</form>
 	</div>
-</form>
+
 <?php
 	//require 'headfoot.php';
 	footerHTML();
