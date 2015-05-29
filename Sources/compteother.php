@@ -33,8 +33,6 @@
 				$_SESSION['telephone'] = $row[6];
 				$_SESSION['datenaissanceuser'] = $row[7];
 				$_SESSION['dateinscription'] = $row[8];
-				$_SESSION['nbobjvendu'] = $row[9];
-				$_SESSION['nbobjach'] = $row[10];
 			}
 		}
 	$nom = $_SESSION['nom'];
@@ -43,6 +41,9 @@
 	$telephone = $_SESSION['telephone'];
 	$datenaissanceuser = $_SESSION['datenaissanceuser'];
 	$dateinscription = $_SESSION['dateinscription'];
+	$ventesachats = getnbvente($loginother);
+	$_SESSION['nbobjvendu'] = $ventesachats['nbventes'];
+	$_SESSION['nbobjach'] = $ventesachats['nbachats'];
 	$nbobjvendu = $_SESSION['nbobjvendu'];
 	$nbobjach = $_SESSION['nbobjach'];
 ?>
@@ -51,9 +52,8 @@
 	?>
 	<div class="gauche2_3">
 			<h2><b>Photo de profil</b></h2>
-			<form action="post_photo.php" method="post" enctype="multipart/form-data">
-		<div class ="droite1_3">
 			<?php
+<<<<<<< HEAD
 				$lienimage = "uploads/photouser/user".$loginother.".jpg";
 				$lienimage2 = "uploads/photouser/user".$loginother.".jpeg";
 				$lienimage3 = "uploads/photouser/user".$loginother.".gif";
@@ -68,6 +68,14 @@
 				}else if(file_exists($lienimage4)){
 					$lienimage=$lienimage4;
 				}
+=======
+	$lienimage = "uploads/photouser/user".$row[0].".jpg";
+	if(!file_exists($lienimage)){
+		$lienimage="photo_profil.jpg";
+	}
+	echo "<img src=\"".$lienimage."\"  width=\"150\" height=\"150\" border=3>";
+	?>
+>>>>>>> 9e06274b50db7195fa827367cb25de70ec37aa8e
 			<h2><b>Infomations personnelles</b></h2>
 				<?php
 					echo "<br />\n";
