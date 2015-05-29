@@ -42,13 +42,23 @@
 <h1 class="Tpage">Mon Compte</h1>
 	<form action="post_photo.php" method="post" enctype="multipart/form-data">
 		<div class ="droite1_3">
-					<?php
-	$lienimage = "uploads/photouser/user".$row[0].".jpg";
-	if(!file_exists($lienimage)){
-		$lienimage="photo_profil.jpg";
-	}
-	echo "<img src=\"".$lienimage."\"  width=\"150\" height=\"150\" border=3>";
-	?>
+			<?php
+				$lienimage = "uploads/photouser/user".$login.".jpg";
+				$lienimage2 = "uploads/photouser/user".$login.".jpeg";
+				$lienimage3 = "uploads/photouser/user".$login.".gif";
+				$lienimage4 = "uploads/photouser/user".$login.".png";
+				if(!file_exists($lienimage)){
+					$lienimage="photo_profil.jpg";
+				}
+				if(file_exists($lienimage2)){
+					$lienimage=$lienimage2;
+				}else if(file_exists($lienimage3)){
+					$lienimage=$lienimage3;
+				}else if(file_exists($lienimage4)){
+					$lienimage=$lienimage4;
+				}
+				echo "<img src=\"".$lienimage."\"  width=\"150\" height=\"150\" border=3>";
+			?>
 			<br><input type="submit" class="bouton_inscr" value="Modifier"></br>
 		</div>
 	</form>

@@ -54,10 +54,20 @@
 			<form action="post_photo.php" method="post" enctype="multipart/form-data">
 		<div class ="droite1_3">
 			<?php
-	$lienimage = "uploads/photouser/user".$row[0].".jpg";
-	if(!file_exists($lienimage)){
-		$lienimage="photo_profil.jpg";
-	}
+				$lienimage = "uploads/photouser/user".$loginother.".jpg";
+				$lienimage2 = "uploads/photouser/user".$loginother.".jpeg";
+				$lienimage3 = "uploads/photouser/user".$loginother.".gif";
+				$lienimage4 = "uploads/photouser/user".$loginother.".png";
+				if(!file_exists($lienimage)){
+					$lienimage="photo_profil.jpg";
+				}
+				if(file_exists($lienimage2)){
+					$lienimage=$lienimage2;
+				}else if(file_exists($lienimage3)){
+					$lienimage=$lienimage3;
+				}else if(file_exists($lienimage4)){
+					$lienimage=$lienimage4;
+				}
 			<h2><b>Infomations personnelles</b></h2>
 				<?php
 					echo "<br />\n";
