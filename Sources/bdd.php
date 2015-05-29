@@ -99,7 +99,7 @@
 	function afficheruser($iduser){
 		$user = getinfouser($iduser);
 		echo '<div class="scroll-content-item">';
-		echo "<h3  style ='float: center'> <a  href=\"compteother.php?id=".$user['iduser']."\">{$user['nomuser']}</a> </h3>";
+		echo "<h3  style ='float: center'> <a  href=\"compteother.php?mail=".$user['iduser']."\">{$user['nomuser']}</a> </h3>";
 		$lienimage = "uploads/photouser/user".$iduser.".jpg";
 		$lienimage2 = "uploads/photouser/user".$iduser.".jpeg";
 		$lienimage3 = "uploads/photouser/user".$iduser.".gif";

@@ -16,6 +16,9 @@
 				case 2:
 					$loginother = $_SESSION['mailutilisateuracheteur'];
 					break;
+				default:
+					$loginother = "";
+					break;
 			}
 		$db = "postgres";
 		$user = "postgres";
@@ -46,13 +49,12 @@
 	$_SESSION['nbobjach'] = $ventesachats['nbachats'];
 	$nbobjvendu = $_SESSION['nbobjvendu'];
 	$nbobjach = $_SESSION['nbobjach'];
-?>
-	<?php
+
+	if($loginother!=""){
 		echo "<h1>Vous ètes sur le compte de : $loginother</h1>";
-	?>
-	<div class="gauche2_3">
-			<h2><b>Photo de profil</b></h2>
-			<?php
+
+		echo "<div class=\"gauche2_3\">";
+			echo "<h2><b>Photo de profil</b></h2>";
 				$lienimage = "uploads/photouser/user".$loginother.".jpg";
 				$lienimage2 = "uploads/photouser/user".$loginother.".jpeg";
 				$lienimage3 = "uploads/photouser/user".$loginother.".gif";
@@ -67,10 +69,10 @@
 				}else if(file_exists($lienimage4)){
 					$lienimage=$lienimage4;
 				}
-	echo "<img src=\"".$lienimage."\"  width=\"150\" height=\"150\" border=3>";
-	?>
-			<h2><b>Infomations personnelles</b></h2>
-				<?php
+		echo "<img src=\"".$lienimage."\"  width=\"150\" height=\"150\" border=3>";
+
+			echo "<h2><b>Infomations personnelles</b></h2>";
+
 					echo "<br />\n";
 					echo "Nom : $nom";
 					echo "<br />\n";
@@ -80,9 +82,9 @@
 					echo "<br />\n";
 					echo "Date d'inscription : $dateinscription";
 					echo "<br />\n";
-				?>
-			<h2><b>Coordonnées</b></h2>
-				<?php
+
+			echo "<h2><b>Coordonnées</b></h2>";
+				
 					echo "<br />\n";
 					echo "Adresse : $adresseuser";
 					echo "<br />\n";
@@ -90,18 +92,20 @@
 					echo "<br />\n";
 					echo "Mail : $loginother";
 					echo "<br />\n";
-				?>
-			<h2><b>Statistiques sur BidBay</b></h2>
-				<?php
+				
+			echo "<h2><b>Statistiques sur BidBay</b></h2>";
+				
 					echo "<br />\n";
 					echo "Nombre d'objet vendu : $nbobjvendu";
 					echo "<br />\n";
 					echo "Nombre d'objet acheté : $nbobjach";
 					echo "<br />\n";
+	}else{
+		echo "<br>Aucun utilisateur n'a encore enchéri sur cet objet.<br><br>";
+	}
 				?>				
 	</div>
 </form>
 <?php
-	//require 'headfoot.php';
 	footerHTML();
 ?>

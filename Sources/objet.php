@@ -69,11 +69,21 @@
 	</div>
 	<div class ="gauche2_3">
 	<?php
-	$lienimage = "uploads/photoobjet/objet".$row[0].".jpg";
-	if(!file_exists($lienimage)){
-		$lienimage="photo_objet_defaut.png";
-	}
-	echo "<img src=\"".$lienimage."\"  width=\"150\" height=\"150\" border=3>";
+		$lienimage = "uploads/photoobjet/objet".$row[0].".jpg";
+		$lienimage2 = "uploads/photoobjet/objet".$row[0].".jpeg";
+		$lienimage3 = "uploads/photoobjet/objet".$row[0].".gif";
+		$lienimage4 = "uploads/photoobjet/objet".$row[0].".png";
+		if(!file_exists($lienimage)){
+			$lienimage="photo_objet_defaut.png";
+		}
+		if(file_exists($lienimage2)){
+			$lienimage=$lienimage2;
+		}else if(file_exists($lienimage3)){
+			$lienimage=$lienimage3;
+		}else if(file_exists($lienimage4)){
+			$lienimage=$lienimage4;
+		}
+		echo "<img src=\"".$lienimage."\"  width=\"150\" height=\"150\" border=3>";
 	?>
 		<form action="acheter.php" method="post">
 		<div class="center">
