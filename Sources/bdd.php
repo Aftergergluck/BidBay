@@ -76,7 +76,21 @@
 		echo '<div class="scroll-content-item">';
 		echo "<h3  style ='float: right'> <a  href=\"objet.php?id=".$objet['idobjet']."\">{$objet['nomobj']}</a> </h3>";
 		echo "<h3  style ='clear: both; float: right'> <br /> <a href=\"compteother.php?mail=".$objet['mailvendeur']."\">{$objet['nomvendeur']}</a><br /></h3>";
-        echo "<img class=\"image\" style=\"position: relative\" src=\"uploads/photoobjet/objet\".$idobjet.\".jpg\" alt=\"$idobjet\">"	;
+        $lienimage = "uploads/photoobjet/objet".$idobjet.".jpg";
+		$lienimage2 = "uploads/photoobjet/objet".$idobjet.".jpeg";
+		$lienimage3 = "uploads/photoobjet/objet".$idobjet.".gif";
+		$lienimage4 = "uploads/photoobjet/objet".$idobjet.".png";
+		if(!file_exists($lienimage)){
+			$lienimage="photo_objet_defaut.png";
+		}
+		if(file_exists($lienimage2)){
+			$lienimage=$lienimage2;
+		}else if(file_exists($lienimage3)){
+			$lienimage=$lienimage3;
+		}else if(file_exists($lienimage4)){
+			$lienimage=$lienimage4;
+		}
+		echo "<img class=\"image\" style=\"position: relative\" src=$lienimage alt=\"$idobjet\">"	;
         echo "<p>Prix :  {$objet['prixinit']} € </p>   ";
         echo "<p>  {$objet['descriptionobj']} </p>";
         echo "</div>";
@@ -86,7 +100,21 @@
 		$user = getinfouser($iduser);
 		echo '<div class="scroll-content-item">';
 		echo "<h3  style ='float: center'> <a  href=\"compteother.php?id=".$user['iduser']."\">{$user['nomuser']}</a> </h3>";
-        echo "<img class=\"image\" style=\"position: relative\" src=\"uploads/photoobjet/objet\".$idobjet.\".jpg\" >"	;
+		$lienimage = "uploads/photouser/user".$iduser.".jpg";
+		$lienimage2 = "uploads/photouser/user".$iduser.".jpeg";
+		$lienimage3 = "uploads/photouser/user".$iduser.".gif";
+		$lienimage4 = "uploads/photouser/user".$iduser.".png";
+		if(!file_exists($lienimage)){
+			$lienimage="photo_profil.jpg";
+		}
+		if(file_exists($lienimage2)){
+			$lienimage=$lienimage2;
+		}else if(file_exists($lienimage3)){
+			$lienimage=$lienimage3;
+		}else if(file_exists($lienimage4)){
+			$lienimage=$lienimage4;
+		}
+        echo "<img class=\"image\" style=\"position: relative\" src=$lienimage >"	;
         echo "<p>Nombre de ventes :  {$user['nbventes']}  </p>   ";
         echo "<p>Nombre d'achats :  {$user['nbachats']} </p>";
         echo "</div>";
