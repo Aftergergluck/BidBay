@@ -4,13 +4,11 @@
 		$db = "postgres";
 		$user = "postgres";
 		$pass = "postgres";
-
 		// Connexion
 		$connect = pg_connect("dbname=$db user=$user password=$pass")
    		or die("Erreur de connexion");
 		return $connect ;
 	}
-
 	function requeteBDD($query) {
 		
 		$connect = connectBDD();
@@ -18,11 +16,7 @@
 		return $result;
 		
 	}
-
-
-
 	//function derniersobjets(){
-
 	//}
 	function getnbvente($mailuser){
 	
@@ -34,10 +28,7 @@
 		$rowV = pg_fetch_array($rstventes);
 		$array = array('nbventes' => $rowV[0] , 'nbachats' => $rowA[0] );
 		return $array;
-
 	}
-
-
 	function getinfouser($iduser){
 		$query = "SELECT * FROM utilisateur WHERE mailutilisateur = '$iduser'; ";
 		$result = requeteBDD($query);
@@ -46,9 +37,6 @@
 		$objet = array('iduser' => $iduser, 'nomuser' => $row[3], 'nbventes' => $ventes['nbventes'], 'nbachats' => $ventes['nbachats']  );
 		return $objet;
 	}
-
-
-
 	function getinfoobjet($idobjet){
 		$query = "SELECT * FROM objet WHERE idobjet = '$idobjet'; ";
 		$result = requeteBDD($query);
@@ -67,41 +55,33 @@
 		$result = requeteBDD($query);
 		$array =  pg_fetch_all_columns($result, 0);
 		return $array;
-
 		
 	} 
-
 	function getlastvente(){
 		$query = "SELECT idobjet FROM objet WHERE datelimitevente < now() ORDER BY datelimitevente LIMIT 6 ;";
 		$result = requeteBDD($query);
 		$array =  pg_fetch_all_columns($result, 0);
 		return $array;
-
 		
 	}
-
 	function getbestvendeur(){
-
 		$query = "SELECT mailutilisateur FROM utilisateur LIMIT 6 ;";
 		$result = requeteBDD($query);
 		$array =  pg_fetch_all_columns($result, 0);
 		return $array;
-
 		
 	}
-
 	function afficherobjet($idobjet){
 		$objet = getinfoobjet($idobjet);
 		echo '<div class="scroll-content-item">';
 		echo "<h3  style ='float: right'> <a  href=\"objet.php?id=".$objet['idobjet']."\">{$objet['nomobj']}</a> </h3>";
 		echo "<h3  style ='clear: both; float: right'> <br /> <a href=\"compteother.php?mail=".$objet['mailvendeur']."\">{$objet['nomvendeur']}</a><br /></h3>";
-        echo "<img class=\"image\" style=\"position: relative\" src=\"uploads/photoobjet/objet\".$idobjet.\".jpg\" >"	;
+        echo "<img class=\"image\" style=\"position: relative\" src=\"uploads/photoobjet/objet\".$idobjet.\".jpg\" alt=\"$idobjet\">"	;
         echo "<p>Prix :  {$objet['prixinit']} € </p>   ";
         echo "<p>  {$objet['descriptionobj']} </p>";
         echo "</div>";
         
 	}
-
 	function afficheruser($iduser){
 		$user = getinfouser($iduser);
 		echo '<div class="scroll-content-item">';
@@ -112,7 +92,4 @@
         echo "</div>";
        
 	}
-
-
-
 ?>
